@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_recipe_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/recipetortellini" />
+
+        <LinearLayout
+            android:id="@+id/ln_recipe_title_container"
+            android:background="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/img_recipe_image"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/tv_recipe_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:padding="5dp"
+                android:textSize="20sp"
+                tools:text="30-Minute-Cheese-Tortellini-Soup" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

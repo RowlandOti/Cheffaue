@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.rowland.cheffaue"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', 'APP_ID', '"1cfb0c03"'
+        buildConfigField 'String', 'API_KEY', '"3a2c2ca7bfd11870ba5c244d4801fd3e"'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // LOCAL BINARY DEPENDENCY
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // TEST-ONLY DEPENDENCIES
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // REMOTE BINARY DEPENDENCY - Android
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:palette-v7:26.1.0'
+    // REMOTE BINARY DEPENDENCY - Third Party
+    // Use - Rest API Support and Logging
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    // Use - Image Loading
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.facebook.fresco:fresco:1.5.0'
+    // Use - Component Injection
+    compile 'com.google.dagger:dagger:2.12'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
+    // Use - Database support
+    //compile 'com.xxx'
+    // Use - View Injection support
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    // Reactive - support
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.2.5'
+    provided 'javax.annotation:jsr250-api:1.0'
+}

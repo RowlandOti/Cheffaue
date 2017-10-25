@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rowland.cheffaue.collectionfeature.view.fragments.RecipeCollectionFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_collection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_collection_retry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <TextView
+            tools:text="No recipe's Loaded. Click to Retry"
+            android:layout_centerInParent="true"
+            android:id="@+id/tv_collection_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No recipe's Loaded. Click to Retry" />
+
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_collection_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:id="@+id/pb_collection_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</FrameLayout>
