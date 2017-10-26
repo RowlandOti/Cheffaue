@@ -7,7 +7,7 @@
     tools:context="com.rowland.cheffaue.collectionfeature.view.activities.RecipeActivity">
 
     <FrameLayout
-        android:id="@+id/fm_list_section"
+        android:id="@+id/fm_collection_section"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2" />
