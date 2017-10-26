@@ -33,7 +33,7 @@ public class RecipePayloadToModelMapper {
             recipe.setTotalTimeInSeconds(payload.getTotalTimeInSeconds());
             recipe.setFlavors(payload.getFlavors());
             recipe.setIngredients(payload.getIngredients());
-            recipe.setImageUrlsBySize(payload.getImageUrlsBySize());
+            recipe.setSmallImageUrls(payload.getSmallImageUrls());
         }
         return recipe;
     }

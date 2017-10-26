@@ -13,8 +13,6 @@ import java.util.List;
 
 public class RecipeModel implements Parcelable {
 
-    private RecipePayload.ImageUrlsBySize imageUrlsBySize;
-
     private String sourceDisplayName;
 
     private List<String> ingredients = null;
@@ -34,14 +32,6 @@ public class RecipeModel implements Parcelable {
     private Integer rating;
 
     public RecipeModel() {
-    }
-
-    public RecipePayload.ImageUrlsBySize getImageUrlsBySize() {
-        return imageUrlsBySize;
-    }
-
-    public void setImageUrlsBySize(RecipePayload.ImageUrlsBySize imageUrlsBySize) {
-        this.imageUrlsBySize = imageUrlsBySize;
     }
 
     public String getSourceDisplayName() {
@@ -118,11 +108,10 @@ public class RecipeModel implements Parcelable {
 
     @Override
     public String toString() {
-        return "ClassPojo [id = " + id + ", ingredients = " + ingredients + ", recipeName = " + recipeName + ", totalTimeInSeconds = " + totalTimeInSeconds + ", smallImageUrls = " + smallImageUrls + ", sourceDisplayName = " + sourceDisplayName + ", flavors = " + flavors + ", rating = " + rating + ", attributes = " + attributes + ", imageUrlsBySize = " + imageUrlsBySize + "]";
+        return "RecipeModel [id = " + id + ", ingredients = " + ingredients + ", recipeName = " + recipeName + ", totalTimeInSeconds = " + totalTimeInSeconds + ", smallImageUrls = " + smallImageUrls + ", sourceDisplayName = " + sourceDisplayName + ", flavors = " + flavors + ", rating = " + rating + ", attributes = " + attributes + ", imageUrlsBySize = " + "]";
     }
 
     protected RecipeModel(Parcel in) {
-        this.imageUrlsBySize = ((RecipePayload.ImageUrlsBySize) in.readValue((RecipePayload.ImageUrlsBySize.class.getClassLoader())));
         this.sourceDisplayName = ((String) in.readValue((String.class.getClassLoader())));
         in.readList(this.ingredients, (java.lang.String.class.getClassLoader()));
         this.id = ((String) in.readValue((String.class.getClassLoader())));
@@ -148,7 +137,6 @@ public class RecipeModel implements Parcelable {
     };
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(imageUrlsBySize);
         dest.writeValue(sourceDisplayName);
         dest.writeList(ingredients);
         dest.writeValue(id);
@@ -162,50 +150,6 @@ public class RecipeModel implements Parcelable {
 
     public int describeContents() {
         return 0;
-    }
-
-    public static class ImageUrlsBySize implements Parcelable {
-
-        private String _90;
-
-        public ImageUrlsBySize() {
-        }
-
-        public String get90() {
-            return _90;
-        }
-
-        public void set90(String _90) {
-            this._90 = _90;
-        }
-
-        @Override
-        public String toString() {
-            return "ImageUrlsBySize [90 = " + 90 + "]";
-        }
-
-        protected ImageUrlsBySize(Parcel in) {
-            this._90 = ((String) in.readValue((String.class.getClassLoader())));
-        }
-
-        public final static Parcelable.Creator<ImageUrlsBySize> CREATOR = new Creator<ImageUrlsBySize>() {
-
-            public ImageUrlsBySize createFromParcel(Parcel in) {
-                return new ImageUrlsBySize(in);
-            }
-
-            public ImageUrlsBySize[] newArray(int size) {
-                return (new ImageUrlsBySize[size]);
-            }
-        };
-
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeValue(_90);
-        }
-
-        public int describeContents() {
-            return 0;
-        }
     }
 
     public static class Attributes implements Parcelable {
