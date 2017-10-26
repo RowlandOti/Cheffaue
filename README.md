@@ -4,7 +4,7 @@
 # Cheffaue
 Some of the Android skills used in the project include:
 
-- Android Architecting - the right way
+- Android Architecting - the right way (SOLID)
 - Android-MVP
 - Dagger
 - RXAndroid/RxJava
