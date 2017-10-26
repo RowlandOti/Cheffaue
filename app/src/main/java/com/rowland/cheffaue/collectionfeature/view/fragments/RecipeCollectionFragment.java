@@ -19,6 +19,7 @@ import com.rowland.cheffaue.R;
 import com.rowland.cheffaue.appfeature.ApplicationController;
 import com.rowland.cheffaue.collectionfeature.contracts.IRecipeCollectionContract;
 import com.rowland.cheffaue.collectionfeature.presenter.RecipeCollectionPresenter;
+import com.rowland.cheffaue.collectionfeature.view.activities.RecipeActivity;
 import com.rowland.cheffaue.collectionfeature.view.adapters.RecipeCollectionAdapter;
 import com.rowland.cheffaue.domain.model.RecipeModel;
 import com.rowland.cheffaue.utils.ScreenUtils;
@@ -84,7 +85,7 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity())));
+        mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity(),RecipeActivity.mTwoPane)));
         mRecipeCollectionAdapter = new RecipeCollectionAdapter(new ArrayList<RecipeModel>());
         mCollectionRecyclerView.setAdapter(mRecipeCollectionAdapter);
 

@@ -9,10 +9,14 @@ import android.util.DisplayMetrics;
 
 public class ScreenUtils {
 
-    public static int calculateNoOfColumns(Context context) {
+    public static int calculateNoOfColumns(Context context, boolean isTwoPane) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int scalingFactor = 180;
+        // Have a fraction of screen for two-pane
+        if (isTwoPane) {
+            dpWidth = displayMetrics.widthPixels * 1 / 2f / displayMetrics.density;
+        }
+        int scalingFactor = 200;
         int noOfColumns = (int) (dpWidth / scalingFactor);
         return noOfColumns;
     }
