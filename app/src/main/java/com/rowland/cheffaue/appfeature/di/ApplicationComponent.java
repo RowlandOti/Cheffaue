@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.rowland.cheffaue.collectionfeature.di.RecipeCollectionComponent;
 import com.rowland.cheffaue.collectionfeature.di.RecipeCollectionModule;
+import com.rowland.cheffaue.detailfeature.di.RecipeDetailComponent;
+import com.rowland.cheffaue.detailfeature.di.RecipeDetailModule;
 import com.rowland.cheffaue.restfeature.di.RestComponent;
 import com.rowland.cheffaue.restfeature.di.RestModule;
 
@@ -20,6 +22,10 @@ import retrofit2.Retrofit;
 @Component(modules = {ApplicationModule.class})
 public interface ApplicationComponent {
     Context context();
+
     RestComponent restComponent(RestModule restModule);
-    RecipeCollectionComponent recipeCollectionComponent(RecipeCollectionModule recipeMod);
+
+    RecipeCollectionComponent recipeCollectionComponent(RecipeCollectionModule recipeCollectionMod);
+
+    RecipeDetailComponent recipeDetailComponent(RecipeDetailModule recipeDetailMod);
 }

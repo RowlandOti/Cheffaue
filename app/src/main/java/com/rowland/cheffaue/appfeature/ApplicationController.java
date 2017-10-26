@@ -8,6 +8,9 @@ import com.rowland.cheffaue.appfeature.di.DaggerApplicationComponent;
 import com.rowland.cheffaue.collectionfeature.contracts.IRecipeCollectionContract;
 import com.rowland.cheffaue.collectionfeature.di.RecipeCollectionComponent;
 import com.rowland.cheffaue.collectionfeature.di.RecipeCollectionModule;
+import com.rowland.cheffaue.detailfeature.contracts.IRecipeDetailContract;
+import com.rowland.cheffaue.detailfeature.di.RecipeDetailComponent;
+import com.rowland.cheffaue.detailfeature.di.RecipeDetailModule;
 import com.rowland.cheffaue.restfeature.di.RestComponent;
 import com.rowland.cheffaue.restfeature.di.RestModule;
 
@@ -50,5 +53,9 @@ public class ApplicationController extends Application {
 
     public RecipeCollectionComponent getRecipeCollectionComponent(IRecipeCollectionContract.IRecipeCollectionView view) {
         return appComponent.recipeCollectionComponent(new RecipeCollectionModule(view));
+    }
+
+    public RecipeDetailComponent getRecipeDetailComponent(IRecipeDetailContract.IRecipeDetailView view) {
+        return appComponent.recipeDetailComponent(new RecipeDetailModule(view));
     }
 }
