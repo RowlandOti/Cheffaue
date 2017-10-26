@@ -30,7 +30,7 @@ deploy:
   provider: releases
   api_key:
     secure: bMJlpwnvUWjHnwflGPvwjH+ujbCPQqGt7S4vtSQZ74j9le7adjUBppMk0iDdCzZwgcvtRO+3B6yzmGnmh/vKyPkehm60/tqzZcybJZUSuJnvi1rcG84myW3828WIcJcuENKtF+G3Ln4mz949g/PKe5GqqcaAr8dMICL0jn8VUquPQ8fHhZXYz+TB+l6Mt/LFLokXxzcbSmWvXWoeMF2cf+mnyD5EFTmNhLzP/lNKtqJoG6y6NFxuvpzLSEG7WGuZSJbjKeLAG5c6nmONgf2ozVAUuuJ0+KZhvmULuDuB6vOzfS5mpypQjZ5hF3AJTvBrusWLdzNOWR7RNNqW3XdayJRCvTIuLBPPO4L0lYK7N5/BNjlNwvk35MM+us+1aeqUPPD7tSQyi0ehWLxs9TLi8CzICTJpfwrt2MccohbKRjLc/ryOspdTLgVPDE4NNMmdncxM0oy/ewscJfUAMrIkAeu7jlMv1WsFp/iD8YSCIIUThmNAfL9qAzSwyp8yB8NAyRYP0Rd0SwRBclj7TYxwi2kZAhHLF5i8EjOM1K2vubYgg0Xxmcpn7tHF/VY5wKXKyVbnvJSTnK4l/dmG8VCJCcFUlJqRUNR8+JRkDJQiIbPXG+tL1EE4G13X2bTHmFqCbvDKW4BEeyw228ekSolYSfuy++ZzwsMVv47KKB1Bt+8=
-  file: app/build/outputs/apk/debug/sample-debug.apk
+  file: app/build/outputs/apk/debug/app-debug.apk
   on:
     repo: RowlandOti/Cheffaue
 before_install:
