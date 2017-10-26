@@ -12,11 +12,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rowland.cheffaue.R;
+import com.rowland.cheffaue.collectionfeature.contracts.IRecipeSelectedContract;
 import com.rowland.cheffaue.domain.model.RecipeModel;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,9 +35,10 @@ import butterknife.ButterKnife;
 public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollectionAdapter.RecipeViewHolder> {
 
     private List<RecipeModel> mCollection;
+    private IRecipeSelectedContract.onClickListener mRecipeOnClickListener;
 
-    public RecipeCollectionAdapter(Collection<RecipeModel> collection) {
-        this.mCollection = (List<RecipeModel>) collection;
+    public RecipeCollectionAdapter() {
+        this.mCollection = new ArrayList<>();
     }
 
 
@@ -70,8 +74,11 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
         notifyItemRemoved(position);
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder {
+    public void setRecipeOnClickListener (IRecipeSelectedContract.onClickListener recipeOnClickListener) {
+        this.mRecipeOnClickListener = recipeOnClickListener;
+    }
 
+    public class RecipeViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.img_recipe_image)
         ImageView recipeImageView;
@@ -87,10 +94,18 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindTo(RecipeModel recipeModel) {
+        public void bindTo(final RecipeModel recipeModel) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mRecipeOnClickListener != null) {
+                        mRecipeOnClickListener.onItemClick(recipeModel);
+                    }
+                }
+            });
             recipeNameTextView.setText(recipeModel.getRecipeName());
 
-            String imageUrl = recipeModel.getImageUrlsBySize().get90();
+            String imageUrl = recipeModel.getSmallImageUrls().get(0);
             Target target = new Target() {
 
                 @Override

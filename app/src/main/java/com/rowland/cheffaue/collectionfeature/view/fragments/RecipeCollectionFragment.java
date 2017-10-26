@@ -88,17 +88,25 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity(), RecipeActivity.mTwoPane)));
-        mRecipeCollectionAdapter = new RecipeCollectionAdapter(new ArrayList<RecipeModel>());
+        mRecipeCollectionAdapter = new RecipeCollectionAdapter();
+        mRecipeCollectionAdapter.setRecipeOnClickListener(new IRecipeSelectedContract.onClickListener() {
+            @Override
+            public void onItemClick(RecipeModel recipeModel) {
+                if (mRecipeCollectionPresenter != null && recipeModel != null) {
+                    mRecipeCollectionPresenter.viewRecipe(recipeModel);
+                }
+            }
+        });
         mCollectionRecyclerView.setAdapter(mRecipeCollectionAdapter);
 
         this.loadRecipeCollection();
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof IRecipeSelectedContract.onClickListener) {
-            mRecipeClickListener = (IRecipeSelectedContract.onClickListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof IRecipeSelectedContract.onClickListener) {
+            mRecipeClickListener = (IRecipeSelectedContract.onClickListener) context;
         }
     }
 
@@ -111,7 +119,7 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     @Override
     public void viewRecipe(RecipeModel model) {
         if (mRecipeClickListener != null) {
-            mRecipeCollectionPresenter.viewRecipe(model);
+            mRecipeClickListener.onItemClick(model);
         }
     }
 
@@ -156,7 +164,6 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     @Override
     public void showError(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
-        Log.d(RecipeCollectionFragment.class.getSimpleName(), message);
     }
 
     @Override

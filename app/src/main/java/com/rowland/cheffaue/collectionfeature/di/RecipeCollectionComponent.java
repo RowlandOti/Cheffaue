@@ -23,6 +23,4 @@ public interface RecipeCollectionComponent {
     void inject(RecipeActivity recipeActivity);
 
     void inject(RecipeCollectionFragment recipeListFragment);
-
-    void inject(RecipeDetailFragment recipeDetailFragment);
 }

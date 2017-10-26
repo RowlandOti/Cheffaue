@@ -12,16 +12,17 @@
     <RelativeLayout
         android:id="@+id/rl_collection_retry"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
-        <TextView
-            tools:text="No recipe's Loaded. Click to Retry"
-            android:layout_centerInParent="true"
+        <Button
             android:id="@+id/tv_collection_retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No recipe's Loaded. Click to Retry" />
+            android:layout_centerInParent="true"
+            android:background="@color/colorAccent"
+            android:text="No recipe's Loaded. Click to Retry"
+            android:textColor="@android:color/white"
+            tools:text="No recipe's Loaded. Click to Retry" />
 
     </RelativeLayout>
 
@@ -32,10 +33,10 @@
         android:visibility="gone">
 
         <ProgressBar
-            android:layout_centerInParent="true"
             android:id="@+id/pb_collection_loading"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
     </RelativeLayout>
 

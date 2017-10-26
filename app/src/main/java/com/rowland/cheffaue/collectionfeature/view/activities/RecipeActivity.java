@@ -54,11 +54,11 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeSelected
     public void onItemClick(RecipeModel model) {
         if (mTwoPane) {
             Bundle args = new Bundle();
-            args.putParcelable(RecipeCollectionFragment.SELECTED_RECIPE_KEY, model);
+            args.putString(RecipeCollectionFragment.SELECTED_RECIPE_KEY, model.getId());
             showRecipeDetailFragment(args);
         } else {
             Intent i = new Intent(this, RecipeDetailActivity.class);
-            i.putExtra(RecipeCollectionFragment.SELECTED_RECIPE_KEY, model);
+            i.putExtra(RecipeCollectionFragment.SELECTED_RECIPE_KEY, model.getId());
             startActivity(i);
         }
 
