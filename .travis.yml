@@ -7,6 +7,8 @@ notifications:
     on_failure: always
 jdk:
 - oraclejdk8
+os:
+  - linux
 licenses:
     - 'android-sdk-preview-license-.+'
     - 'android-sdk-license-.+'
@@ -14,13 +16,16 @@ licenses:
 android:
   components:
   - tools
+  - build-tools-26.0.2
   - platform-tools
   - extra-android-support
   - extra-google-google_play_services
   - extra-android-m2repository
   - extra-google-m2repository
-  - build-tools-26.0.1
   - android-26
+  - android-15
+  # Specify at least one system image, if you need to run emulator(s) during your tests
+  - sys-img-armeabi-v7a-android-25
 deploy:
   provider: releases
   api_key:
