@@ -13,11 +13,15 @@ public interface IRecipeCollectionContract {
 
     interface IRecipeCollectionView<E> extends IView {
         void renderRecipeCollection(Collection<E> Collection);
+
         void viewRecipe(E model);
+
         void loadRecipeCollection();
     }
 
-    interface IRecipeCollectionPresenter extends IPresenter {
+    interface IRecipeCollectionPresenter<E> extends IPresenter {
         void loadRecipeCollection();
+
+        void viewRecipe(E model);
     }
 }

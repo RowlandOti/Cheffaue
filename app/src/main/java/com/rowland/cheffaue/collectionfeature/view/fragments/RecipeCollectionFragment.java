@@ -1,23 +1,22 @@
 package com.rowland.cheffaue.collectionfeature.view.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rowland.cheffaue.R;
 import com.rowland.cheffaue.appfeature.ApplicationController;
 import com.rowland.cheffaue.collectionfeature.contracts.IRecipeCollectionContract;
+import com.rowland.cheffaue.collectionfeature.contracts.IRecipeSelectedContract;
 import com.rowland.cheffaue.collectionfeature.presenter.RecipeCollectionPresenter;
 import com.rowland.cheffaue.collectionfeature.view.activities.RecipeActivity;
 import com.rowland.cheffaue.collectionfeature.view.adapters.RecipeCollectionAdapter;
@@ -36,6 +35,8 @@ import butterknife.Unbinder;
 
 public class RecipeCollectionFragment extends Fragment implements IRecipeCollectionContract.IRecipeCollectionView<RecipeModel> {
 
+    public static final String SELECTED_RECIPE_KEY = "selected_recipe_key";
+
     @Inject
     RecipeCollectionPresenter mRecipeCollectionPresenter;
 
@@ -49,6 +50,7 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     RelativeLayout mCollectionRetryView;
 
 
+    private IRecipeSelectedContract.onClickListener mRecipeClickListener;
     private RecipeCollectionAdapter mRecipeCollectionAdapter;
     private Unbinder unbinder;
 
@@ -85,12 +87,21 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity(),RecipeActivity.mTwoPane)));
+        mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity(), RecipeActivity.mTwoPane)));
         mRecipeCollectionAdapter = new RecipeCollectionAdapter(new ArrayList<RecipeModel>());
         mCollectionRecyclerView.setAdapter(mRecipeCollectionAdapter);
 
         this.loadRecipeCollection();
     }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof IRecipeSelectedContract.onClickListener) {
+            mRecipeClickListener = (IRecipeSelectedContract.onClickListener) activity;
+        }
+    }
+
 
     @Override
     public void renderRecipeCollection(Collection<RecipeModel> collection) {
@@ -99,7 +110,9 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
 
     @Override
     public void viewRecipe(RecipeModel model) {
-
+        if (mRecipeClickListener != null) {
+            mRecipeCollectionPresenter.viewRecipe(model);
+        }
     }
 
     @Override

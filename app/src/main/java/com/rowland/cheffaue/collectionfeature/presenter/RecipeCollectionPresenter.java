@@ -4,6 +4,7 @@ package com.rowland.cheffaue.collectionfeature.presenter;
 import android.app.Fragment;
 
 import com.rowland.cheffaue.domain.mapper.RecipePayloadToModelMapper;
+import com.rowland.cheffaue.domain.model.RecipeModel;
 import com.rowland.cheffaue.domain.payload.RecipeListPayload;
 import com.rowland.cheffaue.domain.payload.RecipePayload;
 import com.rowland.cheffaue.collectionfeature.contracts.IRecipeCollectionContract;
@@ -21,7 +22,7 @@ import rx.schedulers.Schedulers;
  * Created by Rowland on 10/24/2017.
  */
 
-public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRecipeCollectionPresenter {
+public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRecipeCollectionPresenter<RecipeModel> {
 
     Retrofit mRetrofit;
     IRecipeCollectionContract.IRecipeCollectionView mView;
@@ -58,6 +59,11 @@ public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRec
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
                 .subscribe(new RecipeListSubscriber());
+    }
+
+    @Override
+    public void viewRecipe(RecipeModel model) {
+        mView.viewRecipe(model);
     }
 
     private final class RecipeListSubscriber extends rx.Subscriber<RecipeListPayload> {
