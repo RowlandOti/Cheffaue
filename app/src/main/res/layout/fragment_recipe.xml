@@ -7,9 +7,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc_collection"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/rl_collection_retry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +25,7 @@
 
     </RelativeLayout>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/rl_collection_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
