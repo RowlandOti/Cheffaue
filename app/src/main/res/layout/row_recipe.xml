@@ -17,24 +17,26 @@
             android:scaleType="fitCenter"
             tools:src="@drawable/recipetortellini" />
 
-        <LinearLayout
-            android:id="@+id/ln_recipe_title_container"
-            android:background="@color/colorAccent"
+        <RelativeLayout
+            android:id="@+id/rl_recipe_title_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/img_recipe_image"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorAccent">
 
             <TextView
+                android:maxLines="2"
                 android:id="@+id/tv_recipe_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
                 android:padding="5dp"
                 android:textSize="20sp"
                 tools:text="30-Minute-Cheese-Tortellini-Soup" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 
