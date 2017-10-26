@@ -48,11 +48,14 @@ public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRec
 
     @Override
     public void destroy() {
-
+        mRetrofit = null;
+        mView = null;
     }
 
     @Override
     public void loadRecipeCollection() {
+        mView.hideRetry();
+        mView.showLoading();
         mRetrofit.create(RecipeService.class)
                 .getRecipeList("soup")
                 .subscribeOn(Schedulers.io())
