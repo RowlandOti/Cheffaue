@@ -7,9 +7,14 @@ notifications:
     on_failure: always
 jdk:
 - oraclejdk8
+licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 android:
   components:
   - tools
+  - platform-tools
   - extra-android-support
   - extra-google-google_play_services
   - extra-android-m2repository
