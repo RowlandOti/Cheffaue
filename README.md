@@ -20,9 +20,9 @@ The app needs an **API KEY** and **APP ID** from [The Yummly API](https://develo
 
 Preview: 
 
-![Alt text](https://github.com/RowlandOti/Cheffaue/blob/master/documentation/art/illustration.gif?raw=true "Cheffaue Preview")
+![Alt text](https://github.com/RowlandOti/Cheffaue/blob/master/documentation/art/illustration.png?raw=true "Cheffaue Preview")
 
 
 
-![Alt text](https://github.com/RowlandOti/Cheffaue/blob/master/documentation/art/illustration.gif?raw=true "Cheffaue Preview")
+![Alt text](https://github.com/RowlandOti/Cheffaue/blob/master/documentation/art/illustration.png?raw=true "Cheffaue Preview")
 
