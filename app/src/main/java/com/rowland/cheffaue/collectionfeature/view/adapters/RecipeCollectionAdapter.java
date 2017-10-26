@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rowland.cheffaue.R;
@@ -47,7 +47,6 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
     @Override
     public void onBindViewHolder(RecipeViewHolder holder, int position) {
         holder.bindTo(this.mCollection.get(position));
-
     }
 
     @Override
@@ -60,14 +59,25 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
         notifyDataSetChanged();
     }
 
+    public void add(int position, RecipeModel model) {
+        mCollection.add(position, model);
+        notifyItemInserted(position);
+    }
+
+    public void remove(RecipeModel model) {
+        int position = mCollection.indexOf(model);
+        mCollection.remove(model);
+        notifyItemRemoved(position);
+    }
+
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
 
 
         @BindView(R.id.img_recipe_image)
         ImageView recipeImageView;
 
-        @BindView(R.id.ln_recipe_title_container)
-        LinearLayout recipeRecipeNameContainer;
+        @BindView(R.id.rl_recipe_title_container)
+        RelativeLayout recipeRecipeNameContainer;
 
         @BindView(R.id.tv_recipe_name)
         TextView recipeNameTextView;
@@ -111,7 +121,6 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
                     if (bitmap != null && !bitmap.isRecycled()) {
                         Palette.from(bitmap).generate(paletteListener);
                     }
-
                 }
 
                 @Override
@@ -119,6 +128,7 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
                     // Something went wrong
                 }
             };
+
             Picasso.with(recipeImageView.getContext())
                     .load(imageUrl)
                     .into(target);
