@@ -1,0 +1,32 @@
+language: android
+notifications:
+  email:
+    recipients:
+    - rowlandotienoo@gmail.com
+    on_success: always
+    on_failure: always
+jdk:
+- oraclejdk8
+android:
+  components:
+  - tools
+  - extra-android-support
+  - extra-google-google_play_services
+  - extra-android-m2repository
+  - extra-google-m2repository
+  - build-tools-26.0.1
+  - android-26
+deploy:
+  provider: releases
+  api_key:
+    secure: bMJlpwnvUWjHnwflGPvwjH+ujbCPQqGt7S4vtSQZ74j9le7adjUBppMk0iDdCzZwgcvtRO+3B6yzmGnmh/vKyPkehm60/tqzZcybJZUSuJnvi1rcG84myW3828WIcJcuENKtF+G3Ln4mz949g/PKe5GqqcaAr8dMICL0jn8VUquPQ8fHhZXYz+TB+l6Mt/LFLokXxzcbSmWvXWoeMF2cf+mnyD5EFTmNhLzP/lNKtqJoG6y6NFxuvpzLSEG7WGuZSJbjKeLAG5c6nmONgf2ozVAUuuJ0+KZhvmULuDuB6vOzfS5mpypQjZ5hF3AJTvBrusWLdzNOWR7RNNqW3XdayJRCvTIuLBPPO4L0lYK7N5/BNjlNwvk35MM+us+1aeqUPPD7tSQyi0ehWLxs9TLi8CzICTJpfwrt2MccohbKRjLc/ryOspdTLgVPDE4NNMmdncxM0oy/ewscJfUAMrIkAeu7jlMv1WsFp/iD8YSCIIUThmNAfL9qAzSwyp8yB8NAyRYP0Rd0SwRBclj7TYxwi2kZAhHLF5i8EjOM1K2vubYgg0Xxmcpn7tHF/VY5wKXKyVbnvJSTnK4l/dmG8VCJCcFUlJqRUNR8+JRkDJQiIbPXG+tL1EE4G13X2bTHmFqCbvDKW4BEeyw228ekSolYSfuy++ZzwsMVv47KKB1Bt+8=
+  file: sample/build/outputs/apk/debug/sample-debug.apk
+  on:
+    repo: RowlandOti/Cheffaue
+before_install:
+- export JAVA7_HOME=/usr/lib/jvm/java-7-oracle
+- export JAVA8_HOME=/usr/lib/jvm/java-8-oracle
+- export JAVA_HOME=$JAVA8_HOME
+- chmod +x gradlew
+script:
+- "./gradlew clean build --stacktrace"
