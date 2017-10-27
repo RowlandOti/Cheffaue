@@ -87,8 +87,9 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity(), RecipeActivity.mTwoPane)));
         mRecipeCollectionAdapter = new RecipeCollectionAdapter();
+        mCollectionRecyclerView.setAdapter(mRecipeCollectionAdapter);
+        mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity(), RecipeActivity.mTwoPane)));
         mRecipeCollectionAdapter.setRecipeOnClickListener(new IRecipeSelectedContract.onClickListener() {
             @Override
             public void onItemClick(RecipeModel recipeModel) {
@@ -97,7 +98,6 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
                 }
             }
         });
-        mCollectionRecyclerView.setAdapter(mRecipeCollectionAdapter);
 
         this.loadRecipeCollection();
     }
@@ -114,6 +114,7 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     @Override
     public void renderRecipeCollection(Collection<RecipeModel> collection) {
         mRecipeCollectionAdapter.addAll(collection);
+        Toast.makeText(getActivity(), String.valueOf(mRecipeCollectionAdapter.getItemCount()), Toast.LENGTH_LONG).show();
     }
 
     @Override

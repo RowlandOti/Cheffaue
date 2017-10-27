@@ -1,13 +1,18 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<tools:android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.rowland.cheffaue.detailfeature.view.fragments.RecipeDetailFragment">
 
-    <ImageView
-        android:id="@+id/img_recipe_detail_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <include
+        android:id="@+id/recipe_detail_appbar"
+        layout="@layout/inc_recipe_detail_appbar"
+        android:elevation="6dp" />
 
-</FrameLayout>
+    <include
+        android:id="@+id/i_viewpager"
+        layout="@layout/inc_recipe_detail_viewpager" />
+
+</tools:android.support.design.widget.CoordinatorLayout>

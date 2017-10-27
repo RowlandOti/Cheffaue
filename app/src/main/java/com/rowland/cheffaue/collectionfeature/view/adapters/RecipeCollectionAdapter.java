@@ -41,7 +41,6 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
         this.mCollection = new ArrayList<>();
     }
 
-
     @Override
     public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_recipe, parent, false);

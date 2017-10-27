@@ -12,7 +12,8 @@
     <RelativeLayout
         android:id="@+id/rl_collection_retry"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/tv_collection_retry"

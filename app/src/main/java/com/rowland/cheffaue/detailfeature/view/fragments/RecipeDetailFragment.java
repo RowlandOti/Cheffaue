@@ -33,7 +33,7 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     @Inject
     RecipeDetailPresenter mRecipeDetailPresenter;
 
-    @BindView(R.id.img_recipe_detail_image)
+    @BindView(R.id.img_recipe_detail_backdrop)
     ImageView detailImageView;
 
     private Unbinder unbinder;
@@ -115,7 +115,7 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
 
     @Override
     public void renderRecipeDetail(RecipeDetailModel recipeDetailModel) {
-        String hostedImageUrl = recipeDetailModel.getImages().get(0).getHostedMediumUrl();
+        String hostedImageUrl = recipeDetailModel.getImages().get(0).getHostedLargeUrl();
         Picasso.with(getActivity()).load(hostedImageUrl).into(detailImageView);
     }
 
