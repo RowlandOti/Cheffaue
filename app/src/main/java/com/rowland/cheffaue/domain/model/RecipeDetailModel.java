@@ -1,61 +1,80 @@
 
-package com.rowland.cheffaue.domain.payload;
+package com.rowland.cheffaue.domain.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.List;
 
-public class RecipeDetailPayload {
+public class RecipeDetailModel implements Parcelable {
 
-    @SerializedName("yield")
-    @Expose
     private String yield;
-    @SerializedName("nutritionEstimates")
-    @Expose
+
     private List<NutritionEstimate> nutritionEstimates = null;
-    @SerializedName("prepTimeInSeconds")
-    @Expose
+
     private Integer prepTimeInSeconds;
-    @SerializedName("totalTime")
-    @Expose
+
     private String totalTime;
-    @SerializedName("images")
-    @Expose
+
     private List<Image> images = null;
-    @SerializedName("name")
-    @Expose
+
     private String name;
-    @SerializedName("source")
-    @Expose
+
     private Source source;
-    @SerializedName("prepTime")
-    @Expose
+
     private String prepTime;
-    @SerializedName("id")
-    @Expose
+
     private String id;
-    @SerializedName("ingredientLines")
-    @Expose
+
     private List<String> ingredientLines = null;
-    @SerializedName("cookTime")
-    @Expose
+
     private String cookTime;
-    @SerializedName("numberOfServings")
-    @Expose
+
     private Integer numberOfServings;
-    @SerializedName("totalTimeInSeconds")
-    @Expose
+
     private Integer totalTimeInSeconds;
-    @SerializedName("cookTimeInSeconds")
-    @Expose
+
     private Integer cookTimeInSeconds;
-    @SerializedName("flavors")
-    @Expose
+
     private Flavors flavors;
-    @SerializedName("rating")
-    @Expose
+
     private Integer rating;
+    public final static Parcelable.Creator<RecipeDetailModel> CREATOR = new Creator<RecipeDetailModel>() {
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public RecipeDetailModel createFromParcel(Parcel in) {
+            return new RecipeDetailModel(in);
+        }
+
+        public RecipeDetailModel[] newArray(int size) {
+            return (new RecipeDetailModel[size]);
+        }
+
+    };
+
+    protected RecipeDetailModel(Parcel in) {
+        this.yield = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.nutritionEstimates, (com.rowland.cheffaue.domain.model.NutritionEstimate.class.getClassLoader()));
+        this.prepTimeInSeconds = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.totalTime = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.images, (com.rowland.cheffaue.domain.model.Image.class.getClassLoader()));
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.source = ((Source) in.readValue((Source.class.getClassLoader())));
+        this.prepTime = ((String) in.readValue((String.class.getClassLoader())));
+        this.id = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.ingredientLines, (java.lang.String.class.getClassLoader()));
+        this.cookTime = ((String) in.readValue((String.class.getClassLoader())));
+        this.numberOfServings = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.totalTimeInSeconds = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.cookTimeInSeconds = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.flavors = ((Flavors) in.readValue((Flavors.class.getClassLoader())));
+        this.rating = ((Integer) in.readValue((Integer.class.getClassLoader())));
+    }
+
+    public RecipeDetailModel() {
+    }
 
     public String getYield() {
         return yield;
@@ -189,4 +208,28 @@ public class RecipeDetailPayload {
     public String toString() {
         return "RecipeDetailPayload [prepTime = " + prepTime + ", totalTimeInSeconds = " + totalTimeInSeconds + ", yield = " + yield + ", ingredientLines = " + ingredientLines + ", cookTime = " + cookTime + ", id = " + id + ", source = " + source + ", prepTimeInSeconds = " + prepTimeInSeconds + ", numberOfServings = " + numberOfServings + ", name = " + name + ", flavors = " + flavors + ", images = " + images + ", rating = " + rating + ", cookTimeInSeconds = " + cookTimeInSeconds + ", totalTime = " + totalTime + ", nutritionEstimates = " + nutritionEstimates + "]";
     }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(yield);
+        dest.writeList(nutritionEstimates);
+        dest.writeValue(prepTimeInSeconds);
+        dest.writeValue(totalTime);
+        dest.writeList(images);
+        dest.writeValue(name);
+        dest.writeValue(source);
+        dest.writeValue(prepTime);
+        dest.writeValue(id);
+        dest.writeList(ingredientLines);
+        dest.writeValue(cookTime);
+        dest.writeValue(numberOfServings);
+        dest.writeValue(totalTimeInSeconds);
+        dest.writeValue(cookTimeInSeconds);
+        dest.writeValue(flavors);
+        dest.writeValue(rating);
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
 }

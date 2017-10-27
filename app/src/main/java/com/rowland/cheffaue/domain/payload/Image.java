@@ -3,7 +3,6 @@ package com.rowland.cheffaue.domain.payload;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Image {
 
@@ -52,9 +51,10 @@ public class Image {
         this.imageUrlsBySize = imageUrlsBySize;
     }
 
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("hostedSmallUrl", hostedSmallUrl).append("hostedMediumUrl", hostedMediumUrl).append("hostedLargeUrl", hostedLargeUrl).append("imageUrlsBySize", imageUrlsBySize).toString();
+        return "Image [hostedMediumUrl = " + hostedMediumUrl + ", hostedSmallUrl = " + hostedSmallUrl + ", imageUrlsBySize = " + imageUrlsBySize + ", hostedLargeUrl = " + hostedLargeUrl + "]";
     }
 
 }

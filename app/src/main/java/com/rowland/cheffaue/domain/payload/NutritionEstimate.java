@@ -3,7 +3,6 @@ package com.rowland.cheffaue.domain.payload;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class NutritionEstimate {
 
@@ -53,8 +52,9 @@ public class NutritionEstimate {
     }
 
     @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("attribute", attribute).append("description", description).append("value", value).append("unit", unit).toString();
+    public String toString()
+    {
+        return "NutritionEstimate [unit = "+unit+", description = "+description+", value = "+value+", attribute = "+attribute+"]";
     }
 
 }

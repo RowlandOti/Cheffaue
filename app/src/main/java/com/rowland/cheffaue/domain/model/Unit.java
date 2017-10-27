@@ -1,29 +1,54 @@
 
-package com.rowland.cheffaue.domain.payload;
+package com.rowland.cheffaue.domain.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Unit {
+public class Unit implements Parcelable
+{
 
-    @SerializedName("id")
-    @Expose
     private String id;
-    @SerializedName("name")
-    @Expose
+
     private String name;
-    @SerializedName("abbreviation")
-    @Expose
+
     private String abbreviation;
-    @SerializedName("plural")
-    @Expose
+
     private String plural;
-    @SerializedName("pluralAbbreviation")
-    @Expose
+
     private String pluralAbbreviation;
-    @SerializedName("decimal")
-    @Expose
+
     private Boolean decimal;
+    public final static Parcelable.Creator<Unit> CREATOR = new Creator<Unit>() {
+
+
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Unit createFromParcel(Parcel in) {
+            return new Unit(in);
+        }
+
+        public Unit[] newArray(int size) {
+            return (new Unit[size]);
+        }
+
+    }
+    ;
+
+    protected Unit(Parcel in) {
+        this.id = ((String) in.readValue((String.class.getClassLoader())));
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.abbreviation = ((String) in.readValue((String.class.getClassLoader())));
+        this.plural = ((String) in.readValue((String.class.getClassLoader())));
+        this.pluralAbbreviation = ((String) in.readValue((String.class.getClassLoader())));
+        this.decimal = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+    }
+
+    public Unit() {
+    }
 
     public String getId() {
         return id;
@@ -77,4 +102,18 @@ public class Unit {
     public String toString() {
         return "Unit [id = " + id + ", name = " + name + ", plural = " + plural + ", abbreviation = " + abbreviation + ", decimal = " + decimal + ", pluralAbbreviation = " + pluralAbbreviation + "]";
     }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeValue(name);
+        dest.writeValue(abbreviation);
+        dest.writeValue(plural);
+        dest.writeValue(pluralAbbreviation);
+        dest.writeValue(decimal);
+    }
+
+    public int describeContents() {
+        return  0;
+    }
+
 }

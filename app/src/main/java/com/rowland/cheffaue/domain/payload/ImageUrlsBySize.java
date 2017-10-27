@@ -3,7 +3,6 @@ package com.rowland.cheffaue.domain.payload;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class ImageUrlsBySize {
 
@@ -32,7 +31,6 @@ public class ImageUrlsBySize {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("_90", _90).append("_360", _360).toString();
+        return "ImageUrlsBySize [90 = " + _90 + ", _360 = " + _360 + "]";
     }
-
 }

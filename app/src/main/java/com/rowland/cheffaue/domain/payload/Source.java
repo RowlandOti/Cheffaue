@@ -3,7 +3,6 @@ package com.rowland.cheffaue.domain.payload;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Source {
 
@@ -43,7 +42,7 @@ public class Source {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("sourceDisplayName", sourceDisplayName).append("sourceSiteUrl", sourceSiteUrl).append("sourceRecipeUrl", sourceRecipeUrl).toString();
+        return "Source [sourceSiteUrl = " + sourceSiteUrl + ", sourceDisplayName = " + sourceDisplayName + ", sourceRecipeUrl = " + sourceRecipeUrl + "]";
     }
 
 }

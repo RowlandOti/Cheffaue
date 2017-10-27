@@ -3,7 +3,6 @@ package com.rowland.cheffaue.domain.payload;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Flavors {
 
@@ -76,7 +75,7 @@ public class Flavors {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("piquant", piquant).append("meaty", meaty).append("bitter", bitter).append("sweet", sweet).append("sour", sour).append("salty", salty).toString();
+        return "Flavors [Piquant = " + piquant + ", Bitter = " + bitter + ", Salty = " + salty + ", Sour = " + sour + ", Sweet = " + sweet + ", Meaty = " + meaty + "]";
     }
 
 }
