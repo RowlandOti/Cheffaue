@@ -57,8 +57,8 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
         mRecipeDetailPresenter.setRetrofit(controller.getRestComponent().retrofit());
 
         if (getArguments() != null) {
-           Bundle args = getArguments();
-           recipeId = args.getString(RecipeCollectionFragment.SELECTED_RECIPE_KEY);
+            Bundle args = getArguments();
+            recipeId = args.getString(RecipeCollectionFragment.SELECTED_RECIPE_KEY);
         }
     }
 
@@ -73,28 +73,9 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if(recipeId != null) {
+        if (recipeId != null) {
             this.loadRecipeDetail(recipeId);
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mRecipeDetailPresenter.resume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mRecipeDetailPresenter.pause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mRecipeDetailPresenter.destroy();
-        unbinder.unbind();
     }
 
     @Override
@@ -136,5 +117,29 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     public void renderRecipeDetail(RecipeDetailModel recipeDetailModel) {
         String hostedImageUrl = recipeDetailModel.getImages().get(0).getHostedMediumUrl();
         Picasso.with(getActivity()).load(hostedImageUrl).into(detailImageView);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mRecipeDetailPresenter.resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mRecipeDetailPresenter.pause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mRecipeDetailPresenter.destroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

@@ -182,6 +182,11 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     public void onDestroy() {
         super.onDestroy();
         mRecipeCollectionPresenter.destroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
         unbinder.unbind();
     }
 }

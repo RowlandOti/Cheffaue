@@ -1,16 +1,11 @@
 package com.rowland.cheffaue.collectionfeature.presenter;
 
 
-import android.app.Fragment;
-
 import com.rowland.cheffaue.domain.mapper.RecipePayloadToModelMapper;
 import com.rowland.cheffaue.domain.model.RecipeModel;
 import com.rowland.cheffaue.domain.payload.RecipeListPayload;
-import com.rowland.cheffaue.domain.payload.RecipePayload;
 import com.rowland.cheffaue.collectionfeature.contracts.IRecipeCollectionContract;
 import com.rowland.cheffaue.restfeature.RecipeService;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -26,10 +21,12 @@ public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRec
 
     Retrofit mRetrofit;
     IRecipeCollectionContract.IRecipeCollectionView mView;
+    RecipeCollectionSubscriber recipeCollectionSubscriber;
 
     @Inject
     public RecipeCollectionPresenter(IRecipeCollectionContract.IRecipeCollectionView mView) {
         this.mView = mView;
+        this.recipeCollectionSubscriber = new RecipeCollectionPresenter.RecipeCollectionSubscriber();
     }
 
     public void setRetrofit(Retrofit retrofit) {
@@ -50,6 +47,7 @@ public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRec
     public void destroy() {
         mRetrofit = null;
         mView = null;
+        recipeCollectionSubscriber.unsubscribe();
     }
 
     @Override
@@ -61,7 +59,7 @@ public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRec
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(new RecipeListSubscriber());
+                .subscribe(recipeCollectionSubscriber);
     }
 
     @Override
@@ -69,7 +67,7 @@ public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRec
         mView.viewRecipe(model);
     }
 
-    private final class RecipeListSubscriber extends rx.Subscriber<RecipeListPayload> {
+    private final class RecipeCollectionSubscriber extends rx.Subscriber<RecipeListPayload> {
 
         @Override
         public void onCompleted() {

@@ -25,10 +25,12 @@ public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetai
 
     Retrofit mRetrofit;
     IRecipeDetailContract.IRecipeDetailView mView;
+    private RecipeDetailSubscriber recipeDetailSubscriber;
 
     @Inject
     public RecipeDetailPresenter(IRecipeDetailContract.IRecipeDetailView mView) {
         this.mView = mView;
+        this.recipeDetailSubscriber = new RecipeDetailPresenter.RecipeDetailSubscriber();
     }
 
     public void setRetrofit(Retrofit retrofit) {
@@ -49,6 +51,7 @@ public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetai
     public void destroy() {
         mRetrofit = null;
         mView = null;
+        recipeDetailSubscriber.unsubscribe();
     }
 
     @Override
@@ -60,7 +63,7 @@ public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetai
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(new RecipeDetailPresenter.RecipeDetailSubscriber());
+                .subscribe(recipeDetailSubscriber);
     }
 
     private final class RecipeDetailSubscriber extends rx.Subscriber<RecipeDetailPayload> {
@@ -80,7 +83,7 @@ public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetai
         @Override
         public void onNext(RecipeDetailPayload recipePayload) {
 
-                mView.renderRecipeDetail(RecipeDetailPayloadToModelMapper.transform(recipePayload));
+            mView.renderRecipeDetail(RecipeDetailPayloadToModelMapper.transform(recipePayload));
         }
     }
 }
