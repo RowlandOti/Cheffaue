@@ -1,10 +1,13 @@
 
 package com.rowland.cheffaue.domain.payload;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ImageUrlsBySize {
+public class ImageUrlsBySize implements Parcelable{
 
     @SerializedName("90")
     @Expose
@@ -12,6 +15,7 @@ public class ImageUrlsBySize {
     @SerializedName("360")
     @Expose
     private String _360;
+
 
     public String get90() {
         return _90;
@@ -33,4 +37,33 @@ public class ImageUrlsBySize {
     public String toString() {
         return "ImageUrlsBySize [90 = " + _90 + ", _360 = " + _360 + "]";
     }
+
+
+    protected ImageUrlsBySize(Parcel in) {
+        _90 = in.readString();
+        _360 = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(_90);
+        dest.writeString(_360);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ImageUrlsBySize> CREATOR = new Creator<ImageUrlsBySize>() {
+        @Override
+        public ImageUrlsBySize createFromParcel(Parcel in) {
+            return new ImageUrlsBySize(in);
+        }
+
+        @Override
+        public ImageUrlsBySize[] newArray(int size) {
+            return new ImageUrlsBySize[size];
+        }
+    };
 }

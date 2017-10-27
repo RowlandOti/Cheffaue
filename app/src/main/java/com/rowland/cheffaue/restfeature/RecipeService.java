@@ -1,9 +1,7 @@
 package com.rowland.cheffaue.restfeature;
 
+import com.rowland.cheffaue.domain.payload.RecipeDetailPayload;
 import com.rowland.cheffaue.domain.payload.RecipeListPayload;
-import com.rowland.cheffaue.domain.payload.RecipePayload;
-
-import java.util.List;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -20,5 +18,5 @@ public interface RecipeService {
     Observable<RecipeListPayload> getRecipeList(@Query("q") String query);
 
     @GET("recipe/{recipe-id}")
-    Observable<RecipePayload> getRecipe(@Path("recipe-id") String recipeId);
+    Observable<RecipeDetailPayload> getRecipe(@Path("recipe-id") String recipeId);
 }

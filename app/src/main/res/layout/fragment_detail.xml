@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.rowland.cheffaue.detailfeature.view.fragments.RecipeDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/img_recipe_detail_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />

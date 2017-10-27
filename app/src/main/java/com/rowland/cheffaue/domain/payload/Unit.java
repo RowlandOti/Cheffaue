@@ -1,10 +1,13 @@
 
 package com.rowland.cheffaue.domain.payload;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Unit {
+public class Unit implements Parcelable{
 
     @SerializedName("id")
     @Expose
@@ -24,6 +27,16 @@ public class Unit {
     @SerializedName("decimal")
     @Expose
     private Boolean decimal;
+
+    protected Unit(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        abbreviation = in.readString();
+        plural = in.readString();
+        pluralAbbreviation = in.readString();
+        byte tmpDecimal = in.readByte();
+        decimal = tmpDecimal == 0 ? null : tmpDecimal == 1;
+    }
 
     public String getId() {
         return id;
@@ -77,4 +90,31 @@ public class Unit {
     public String toString() {
         return "Unit [id = " + id + ", name = " + name + ", plural = " + plural + ", abbreviation = " + abbreviation + ", decimal = " + decimal + ", pluralAbbreviation = " + pluralAbbreviation + "]";
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(abbreviation);
+        dest.writeString(plural);
+        dest.writeString(pluralAbbreviation);
+        dest.writeByte((byte) (decimal == null ? 0 : decimal ? 1 : 2));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Unit> CREATOR = new Creator<Unit>() {
+        @Override
+        public Unit createFromParcel(Parcel in) {
+            return new Unit(in);
+        }
+
+        @Override
+        public Unit[] newArray(int size) {
+            return new Unit[size];
+        }
+    };
 }

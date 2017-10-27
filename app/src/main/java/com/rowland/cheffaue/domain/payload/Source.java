@@ -1,10 +1,13 @@
 
 package com.rowland.cheffaue.domain.payload;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Source {
+public class Source implements  Parcelable{
 
     @SerializedName("sourceDisplayName")
     @Expose
@@ -44,5 +47,38 @@ public class Source {
     public String toString() {
         return "Source [sourceSiteUrl = " + sourceSiteUrl + ", sourceDisplayName = " + sourceDisplayName + ", sourceRecipeUrl = " + sourceRecipeUrl + "]";
     }
+
+    public final static Parcelable.Creator<Source> CREATOR = new Parcelable.Creator<Source>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Source createFromParcel(Parcel in) {
+            return new Source(in);
+        }
+
+        public Source[] newArray(int size) {
+            return (new Source[size]);
+        }
+
+    };
+
+    protected Source(Parcel in) {
+        this.sourceDisplayName = ((String) in.readValue((String.class.getClassLoader())));
+        this.sourceSiteUrl = ((String) in.readValue((String.class.getClassLoader())));
+        this.sourceRecipeUrl = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(sourceDisplayName);
+        dest.writeValue(sourceSiteUrl);
+        dest.writeValue(sourceRecipeUrl);
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
 
 }

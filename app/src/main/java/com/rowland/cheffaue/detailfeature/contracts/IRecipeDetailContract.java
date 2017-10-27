@@ -15,11 +15,11 @@ public interface IRecipeDetailContract {
 
         void renderRecipeDetail(E model);
 
-        void loadRecipeDetail(E model);
+        void loadRecipeDetail(String modelId);
     }
 
-    interface IRecipeDetailPresenter<E> extends IPresenter {
+    interface IRecipeDetailPresenter extends IPresenter {
 
-        void loadRecipeDetail(E model);
+        void loadRecipeDetail(String modelId);
     }
 }

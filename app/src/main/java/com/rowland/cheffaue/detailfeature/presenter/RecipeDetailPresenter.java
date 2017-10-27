@@ -2,8 +2,10 @@ package com.rowland.cheffaue.detailfeature.presenter;
 
 import com.rowland.cheffaue.collectionfeature.presenter.RecipeCollectionPresenter;
 import com.rowland.cheffaue.detailfeature.contracts.IRecipeDetailContract;
+import com.rowland.cheffaue.domain.mapper.RecipeDetailPayloadToModelMapper;
 import com.rowland.cheffaue.domain.mapper.RecipePayloadToModelMapper;
 import com.rowland.cheffaue.domain.model.RecipeModel;
+import com.rowland.cheffaue.domain.payload.RecipeDetailPayload;
 import com.rowland.cheffaue.domain.payload.RecipeListPayload;
 import com.rowland.cheffaue.domain.payload.RecipePayload;
 import com.rowland.cheffaue.presenter.IPresenter;
@@ -19,7 +21,7 @@ import rx.schedulers.Schedulers;
  * Created by Rowland on 10/24/2017.
  */
 
-public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetailPresenter<RecipeModel> {
+public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetailPresenter {
 
     Retrofit mRetrofit;
     IRecipeDetailContract.IRecipeDetailView mView;
@@ -50,18 +52,18 @@ public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetai
     }
 
     @Override
-    public void loadRecipeDetail(RecipeModel model) {
+    public void loadRecipeDetail(String recipeId) {
         mView.hideRetry();
         mView.showLoading();
         mRetrofit.create(RecipeService.class)
-                .getRecipe(model.getId())
+                .getRecipe(recipeId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
                 .subscribe(new RecipeDetailPresenter.RecipeDetailSubscriber());
     }
 
-    private final class RecipeDetailSubscriber extends rx.Subscriber<RecipePayload> {
+    private final class RecipeDetailSubscriber extends rx.Subscriber<RecipeDetailPayload> {
 
         @Override
         public void onCompleted() {
@@ -76,8 +78,14 @@ public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetai
         }
 
         @Override
-        public void onNext(RecipePayload recipePayload) {
-            mView.renderRecipeDetail(RecipePayloadToModelMapper.transform(recipePayload));
+        public void onNext(RecipeDetailPayload recipePayload) {
+            try {
+                mView.renderRecipeDetail(RecipeDetailPayloadToModelMapper.transform(recipePayload));
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

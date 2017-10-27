@@ -4,6 +4,11 @@ package com.rowland.cheffaue.domain.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.rowland.cheffaue.domain.payload.Flavors;
+import com.rowland.cheffaue.domain.payload.Image;
+import com.rowland.cheffaue.domain.payload.NutritionEstimate;
+import com.rowland.cheffaue.domain.payload.Source;
+
 import java.util.List;
 
 public class RecipeDetailModel implements Parcelable {
@@ -56,10 +61,10 @@ public class RecipeDetailModel implements Parcelable {
 
     protected RecipeDetailModel(Parcel in) {
         this.yield = ((String) in.readValue((String.class.getClassLoader())));
-        in.readList(this.nutritionEstimates, (com.rowland.cheffaue.domain.model.NutritionEstimate.class.getClassLoader()));
+        in.readList(this.nutritionEstimates, (NutritionEstimate.class.getClassLoader()));
         this.prepTimeInSeconds = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.totalTime = ((String) in.readValue((String.class.getClassLoader())));
-        in.readList(this.images, (com.rowland.cheffaue.domain.model.Image.class.getClassLoader()));
+        in.readList(this.images, (Image.class.getClassLoader()));
         this.name = ((String) in.readValue((String.class.getClassLoader())));
         this.source = ((Source) in.readValue((Source.class.getClassLoader())));
         this.prepTime = ((String) in.readValue((String.class.getClassLoader())));
