@@ -22,7 +22,7 @@ public class RecipeDetailPayloadToModelMapper {
      * @param payload Object to be transformed.
      * @return {@link RecipeDetailModel} if valid {@link RecipeDetailPayload} otherwise null.
      */
-    public static RecipeDetailModel transform(RecipeDetailPayload payload) throws NoSuchFieldException, IllegalAccessException {
+    public static RecipeDetailModel transform(RecipeDetailPayload payload)  {
         RecipeDetailModel recipe = null;
         if (payload != null) {
             recipe = new RecipeDetailModel();
@@ -51,7 +51,7 @@ public class RecipeDetailPayloadToModelMapper {
      * @param recipeDetailPayload Object Collection to be transformed.
      * @return {@link RecipeDetailModel} if valid {@link RecipeDetailPayload} otherwise null.
      */
-    public static List<RecipeDetailModel> transform(Collection<RecipeDetailPayload> recipeDetailPayload) throws NoSuchFieldException, IllegalAccessException {
+    public static List<RecipeDetailModel> transform(Collection<RecipeDetailPayload> recipeDetailPayload)  {
         List<RecipeDetailModel> recipeList = new ArrayList<>(20);
         RecipeDetailModel Recipe;
         for (RecipeDetailPayload RecipePayload : recipeDetailPayload) {

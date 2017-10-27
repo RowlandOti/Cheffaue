@@ -79,13 +79,8 @@ public class RecipeDetailPresenter implements IRecipeDetailContract.IRecipeDetai
 
         @Override
         public void onNext(RecipeDetailPayload recipePayload) {
-            try {
+
                 mView.renderRecipeDetail(RecipeDetailPayloadToModelMapper.transform(recipePayload));
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
