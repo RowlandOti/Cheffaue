@@ -142,7 +142,7 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
         servingsTextView.setText(String.format("Servings: %d", Math.round(recipeDetailModel.getNumberOfServings())));
         prepTimeTextView.setText(String.format("Prep Time: %s", recipeDetailModel.getTotalTime()));
 
-        detailViewPagerAdapter = new NestedViewPagerAdapter(getChildFragmentManager(), recipeDetailModel);
+        detailViewPagerAdapter = new NestedViewPagerAdapter(getActivity().getSupportFragmentManager(), recipeDetailModel);
         mDetailViewPager.setAdapter(detailViewPagerAdapter);
     }
 
