@@ -6,7 +6,7 @@ package com.rowland.cheffaue.detailfeature.di;
 
 import com.rowland.cheffaue.detailfeature.view.activities.RecipeDetailActivity;
 import com.rowland.cheffaue.detailfeature.view.fragments.RecipeDetailFragment;
-import com.rowland.cheffaue.detailfeature.view.fragments.child.FactsFragment;
+import com.rowland.cheffaue.detailfeature.view.fragments.child.IngredientsFragment;
 
 import dagger.Subcomponent;
 
@@ -21,6 +21,4 @@ public interface RecipeDetailComponent {
     void inject(RecipeDetailActivity recipeDetailActivity);
 
     void inject(RecipeDetailFragment recipeDetailFragment);
-
-    void inject(FactsFragment factsFragment);
 }
