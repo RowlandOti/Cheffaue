@@ -52,7 +52,7 @@ public class RecipeDetailPayload {
     private Integer cookTimeInSeconds;
     @SerializedName("flavors")
     @Expose
-    private Flavors flavors;
+    private Flavour flavors;
     @SerializedName("rating")
     @Expose
     private Integer rating;
@@ -169,11 +169,11 @@ public class RecipeDetailPayload {
         this.cookTimeInSeconds = cookTimeInSeconds;
     }
 
-    public Flavors getFlavors() {
+    public Flavour getFlavors() {
         return flavors;
     }
 
-    public void setFlavors(Flavors flavors) {
+    public void setFlavors(Flavour flavors) {
         this.flavors = flavors;
     }
 

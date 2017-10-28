@@ -4,7 +4,7 @@ package com.rowland.cheffaue.domain.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.rowland.cheffaue.domain.payload.Flavors;
+import com.rowland.cheffaue.domain.payload.Flavour;
 import com.rowland.cheffaue.domain.payload.Image;
 import com.rowland.cheffaue.domain.payload.NutritionEstimate;
 import com.rowland.cheffaue.domain.payload.Source;
@@ -41,7 +41,7 @@ public class RecipeDetailModel implements Parcelable {
 
     private Integer cookTimeInSeconds;
 
-    private Flavors flavors;
+    private Flavour flavors;
 
     private Integer rating;
     public final static Parcelable.Creator<RecipeDetailModel> CREATOR = new Creator<RecipeDetailModel>() {
@@ -74,7 +74,7 @@ public class RecipeDetailModel implements Parcelable {
         this.numberOfServings = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.totalTimeInSeconds = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.cookTimeInSeconds = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.flavors = ((Flavors) in.readValue((Flavors.class.getClassLoader())));
+        this.flavors = ((Flavour) in.readValue((Flavour.class.getClassLoader())));
         this.rating = ((Integer) in.readValue((Integer.class.getClassLoader())));
     }
 
@@ -193,11 +193,11 @@ public class RecipeDetailModel implements Parcelable {
         this.cookTimeInSeconds = cookTimeInSeconds;
     }
 
-    public Flavors getFlavors() {
+    public Flavour getFlavors() {
         return flavors;
     }
 
-    public void setFlavors(Flavors flavors) {
+    public void setFlavors(Flavour flavors) {
         this.flavors = flavors;
     }
 

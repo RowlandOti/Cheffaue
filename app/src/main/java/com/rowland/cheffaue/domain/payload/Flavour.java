@@ -7,7 +7,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Flavors implements Parcelable{
+public class Flavour implements Parcelable{
 
     @SerializedName("Piquant")
     @Expose
@@ -78,27 +78,27 @@ public class Flavors implements Parcelable{
 
     @Override
     public String toString() {
-        return "Flavors [Piquant = " + piquant + ", Bitter = " + bitter + ", Salty = " + salty + ", Sour = " + sour + ", Sweet = " + sweet + ", Meaty = " + meaty + "]";
+        return "Flavour [Piquant = " + piquant + ", Bitter = " + bitter + ", Salty = " + salty + ", Sour = " + sour + ", Sweet = " + sweet + ", Meaty = " + meaty + "]";
     }
 
 
-    public final static Parcelable.Creator<Flavors> CREATOR = new Parcelable.Creator<Flavors>() {
+    public final static Parcelable.Creator<Flavour> CREATOR = new Parcelable.Creator<Flavour>() {
 
 
         @SuppressWarnings({
                 "unchecked"
         })
-        public Flavors createFromParcel(Parcel in) {
-            return new Flavors(in);
+        public Flavour createFromParcel(Parcel in) {
+            return new Flavour(in);
         }
 
-        public Flavors[] newArray(int size) {
-            return (new Flavors[size]);
+        public Flavour[] newArray(int size) {
+            return (new Flavour[size]);
         }
 
     };
 
-    protected Flavors(Parcel in) {
+    protected Flavour(Parcel in) {
         this.piquant = ((Double) in.readValue((Double.class.getClassLoader())));
         this.meaty = ((Double) in.readValue((Double.class.getClassLoader())));
         this.bitter = ((Double) in.readValue((Double.class.getClassLoader())));
