@@ -71,7 +71,7 @@ public class RecipeCollectionPresenter implements IRecipeCollectionContract.IRec
 
         @Override
         public void onCompleted() {
-            //mView.hideLoading();
+            mView.hideLoading();
         }
 
         @Override

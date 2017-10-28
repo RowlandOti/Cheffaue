@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -87,9 +88,10 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity(), RecipeActivity.mTwoPane)));
         mRecipeCollectionAdapter = new RecipeCollectionAdapter();
         mCollectionRecyclerView.setAdapter(mRecipeCollectionAdapter);
-        mCollectionRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ScreenUtils.calculateNoOfColumns(getActivity(), RecipeActivity.mTwoPane)));
         mRecipeCollectionAdapter.setRecipeOnClickListener(new IRecipeSelectedContract.onClickListener() {
             @Override
             public void onItemClick(RecipeModel recipeModel) {

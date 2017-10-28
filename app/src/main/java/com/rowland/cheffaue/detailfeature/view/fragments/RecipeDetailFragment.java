@@ -3,11 +3,14 @@ package com.rowland.cheffaue.detailfeature.view.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rowland.cheffaue.R;
@@ -15,6 +18,7 @@ import com.rowland.cheffaue.appfeature.ApplicationController;
 import com.rowland.cheffaue.collectionfeature.view.fragments.RecipeCollectionFragment;
 import com.rowland.cheffaue.detailfeature.contracts.IRecipeDetailContract;
 import com.rowland.cheffaue.detailfeature.presenter.RecipeDetailPresenter;
+import com.rowland.cheffaue.detailfeature.view.adapter.NestedViewPagerAdapter;
 import com.rowland.cheffaue.domain.model.RecipeDetailModel;
 import com.squareup.picasso.Picasso;
 
@@ -34,8 +38,22 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     RecipeDetailPresenter mRecipeDetailPresenter;
 
     @BindView(R.id.img_recipe_detail_backdrop)
-    ImageView detailImageView;
+    ImageView mDetailImageView;
+    @BindView(R.id.tv_detail_recipename)
+    TextView recipeNameTextView;
+    @BindView(R.id.tv_detail_noservings)
+    TextView servingsTextView;
+    @BindView(R.id.tv_detail_totalpreptime)
+    TextView prepTimeTextView;
+    @BindView(R.id.tv_detail_rating)
+    TextView ratingsTextView;
 
+    @BindView(R.id.vp_detail_pager)
+    ViewPager mDetailViewPager;
+    @BindView(R.id.sl_sidingtabstrips)
+    TabLayout mSlidingTabStrips;
+
+    private NestedViewPagerAdapter detailViewPagerAdapter;
     private Unbinder unbinder;
     private String recipeId;
 
@@ -73,6 +91,7 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mSlidingTabStrips.setupWithViewPager(mDetailViewPager);
         if (recipeId != null) {
             this.loadRecipeDetail(recipeId);
         }
@@ -116,7 +135,15 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     @Override
     public void renderRecipeDetail(RecipeDetailModel recipeDetailModel) {
         String hostedImageUrl = recipeDetailModel.getImages().get(0).getHostedLargeUrl();
-        Picasso.with(getActivity()).load(hostedImageUrl).into(detailImageView);
+        Picasso.with(getActivity()).load(hostedImageUrl).into(mDetailImageView);
+
+        recipeNameTextView.setText(recipeDetailModel.getName());
+        ratingsTextView.setText(String.format("Rating: %d/10", Math.round(recipeDetailModel.getRating())));
+        servingsTextView.setText(String.format("Servings: %d", Math.round(recipeDetailModel.getNumberOfServings())));
+        prepTimeTextView.setText(String.format("Prep Time: %s", recipeDetailModel.getTotalTime()));
+
+        detailViewPagerAdapter = new NestedViewPagerAdapter(getChildFragmentManager(), recipeDetailModel);
+        mDetailViewPager.setAdapter(detailViewPagerAdapter);
     }
 
     @Override

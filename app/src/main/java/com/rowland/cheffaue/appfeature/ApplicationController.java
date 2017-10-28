@@ -48,7 +48,7 @@ public class ApplicationController extends Application {
     }
 
     public RestComponent getRestComponent() {
-        return restComponent;
+        return this.restComponent;
     }
 
     public RecipeCollectionComponent getRecipeCollectionComponent(IRecipeCollectionContract.IRecipeCollectionView view) {
