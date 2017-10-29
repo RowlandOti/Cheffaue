@@ -3,8 +3,10 @@ package com.rowland.cheffaue.detailfeature.view.fragments.child;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import com.rowland.cheffaue.R;
 import com.rowland.cheffaue.domain.payload.NutritionEstimate;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -65,6 +68,7 @@ public class NutritionFragment extends Fragment {
         mCollectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mNutritionCollectionAdapter = new NutritionCollectionAdapter();
         mCollectionRecyclerView.setAdapter(mNutritionCollectionAdapter);
+        mCollectionRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         if (getArguments() != null) {
             Bundle args = getArguments();
@@ -82,6 +86,10 @@ public class NutritionFragment extends Fragment {
     public class NutritionCollectionAdapter extends RecyclerView.Adapter<NutritionCollectionAdapter.NutritionViewHolder> {
 
         private List<NutritionEstimate> mCollection;
+
+        public NutritionCollectionAdapter() {
+            this.mCollection = new ArrayList<>();
+        }
 
         @Override
         public NutritionCollectionAdapter.NutritionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -118,8 +126,15 @@ public class NutritionFragment extends Fragment {
 
         public class NutritionViewHolder extends RecyclerView.ViewHolder {
 
-            @BindView(R.id.tv_nutrient_name)
-            TextView NutritionTextView;
+            @BindView(R.id.tv_nutrient_attribute)
+            TextView nutritionAttributeTextView;
+
+            @BindView(R.id.tv_nutrient_description)
+            TextView nutritionDescriptionTextView;
+
+            @BindView(R.id.tv_nutrient_value)
+            TextView nutritionValueTextView;
+
 
             public NutritionViewHolder(View itemView) {
                 super(itemView);
@@ -127,7 +142,10 @@ public class NutritionFragment extends Fragment {
             }
 
             public void bindTo(final NutritionEstimate model) {
-                NutritionTextView.setText(model.getAttribute());
+                nutritionAttributeTextView.setText(model.getAttribute());
+                // Quick patch for missing description for FAT_KCAL
+                nutritionDescriptionTextView.setText(model.getAttribute().equals("FAT_KCAL") ? "Fatty Calories" :  model.getDescription());
+                nutritionValueTextView.setText(String.format("%f %s", model.getValue(), model.getUnit().getPlural()));
             }
         }
     }
