@@ -3,6 +3,7 @@ package com.rowland.cheffaue.detailfeature.view.fragments.child;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rowland.cheffaue.R;
-import com.rowland.cheffaue.domain.model.RecipeModel;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class IngredientFragment extends Fragment {
         mCollectionRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mIngredientCollectionAdapter = new IngredientCollectionAdapter();
         mCollectionRecyclerView.setAdapter(mIngredientCollectionAdapter);
+        mCollectionRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         if (getArguments() != null) {
             Bundle args = getArguments();
@@ -81,6 +83,10 @@ public class IngredientFragment extends Fragment {
     public class IngredientCollectionAdapter extends RecyclerView.Adapter<IngredientCollectionAdapter.IngredientViewHolder> {
 
         private List<String> mCollection;
+
+        public IngredientCollectionAdapter() {
+            this.mCollection = new ArrayList<>();
+        }
 
         @Override
         public IngredientCollectionAdapter.IngredientViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -109,7 +115,7 @@ public class IngredientFragment extends Fragment {
             notifyItemInserted(position);
         }
 
-        public void remove(RecipeModel model) {
+        public void remove(String model) {
             int position = mCollection.indexOf(model);
             mCollection.remove(model);
             notifyItemRemoved(position);
