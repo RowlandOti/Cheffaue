@@ -37,7 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#0D000000">
 
             <include
                 layout="@layout/inc_collapsed_text"
@@ -63,7 +64,6 @@
                 app:tabMode="fixed" />
 
         </LinearLayout>
-
 
     </android.support.design.widget.CollapsingToolbarLayout>
 

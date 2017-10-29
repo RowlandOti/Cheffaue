@@ -9,8 +9,9 @@ import android.os.Bundle;
 import com.rowland.cheffaue.R;
 import com.rowland.cheffaue.collectionfeature.view.fragments.RecipeCollectionFragment;
 import com.rowland.cheffaue.detailfeature.view.fragments.RecipeDetailFragment;
+import com.rowland.cheffaue.view.ABaseToolBarActivity;
 
-public class RecipeDetailActivity extends AppCompatActivity {
+public class RecipeDetailActivity extends ABaseToolBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

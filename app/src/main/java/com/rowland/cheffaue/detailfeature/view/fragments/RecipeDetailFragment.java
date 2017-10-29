@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,10 @@ import com.rowland.cheffaue.appfeature.ApplicationController;
 import com.rowland.cheffaue.collectionfeature.view.fragments.RecipeCollectionFragment;
 import com.rowland.cheffaue.detailfeature.contracts.IRecipeDetailContract;
 import com.rowland.cheffaue.detailfeature.presenter.RecipeDetailPresenter;
+import com.rowland.cheffaue.detailfeature.view.activities.RecipeDetailActivity;
 import com.rowland.cheffaue.detailfeature.view.adapter.NestedViewPagerAdapter;
 import com.rowland.cheffaue.domain.model.RecipeDetailModel;
+import com.rowland.cheffaue.view.ABaseToolBarActivity;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -37,6 +40,8 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     @Inject
     RecipeDetailPresenter mRecipeDetailPresenter;
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.img_recipe_detail_backdrop)
     ImageView mDetailImageView;
     @BindView(R.id.tv_detail_recipename)
@@ -98,6 +103,16 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        // Check which instance we are dealing with
+        if (getActivity() instanceof RecipeDetailActivity) {
+            ((RecipeDetailActivity) getActivity()).setToolbar(mToolbar, true, false, 0);
+            ((RecipeDetailActivity) getActivity()).setToolbarTransparent(true);
+        }
+    }
+    @Override
     public Context context() {
         return getActivity();
     }
@@ -142,7 +157,7 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
         servingsTextView.setText(String.format("Servings: %d", Math.round(recipeDetailModel.getNumberOfServings())));
         prepTimeTextView.setText(String.format("Prep Time: %s", recipeDetailModel.getTotalTime()));
 
-        detailViewPagerAdapter = new NestedViewPagerAdapter(getActivity().getSupportFragmentManager(), recipeDetailModel);
+        detailViewPagerAdapter = new NestedViewPagerAdapter(getChildFragmentManager(), recipeDetailModel);
         mDetailViewPager.setAdapter(detailViewPagerAdapter);
     }
 
