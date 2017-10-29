@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // For out of the box run - I shared API_KEY. I will rest it after the end of the excercise
         buildConfigField 'String', 'APP_ID', '"1cfb0c03"'
         buildConfigField 'String', 'API_KEY', '"3a2c2ca7bfd11870ba5c244d4801fd3e"'
     }
@@ -64,4 +65,6 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.2.5'
     provided 'javax.annotation:jsr250-api:1.0'
+    // Graphing and Charting
+    compile 'com.diogobernardino:williamchart:2.5.0'
 }
