@@ -2,16 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tv_nutrient_name"
-        android:layout_width="match_parent"
+        android:id="@+id/tv_nutrient_attribute"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="2"
         android:gravity="center|left"
         android:padding="5dp"
         android:textSize="20sp"
-        tools:text="FASAT" />
+        tools:text="VAL_G" />
+
+    <include layout="@layout/inc_vertical_divider" />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_nutrient_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:padding="5dp"
+            android:textSize="13sp"
+            tools:text="Valine" />
+
+        <include layout="@layout/inc_horizontal_divider" />
+
+        <TextView
+            android:id="@+id/tv_nutrient_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:padding="5dp"
+            android:textSize="13sp"
+            tools:text="0.65 grams" />
+
+    </LinearLayout>
 
 </LinearLayout>
