@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity
+        <activity android:theme="@style/AppBaseThemeNoActionBar.Dark"
             android:name=".detailfeature.view.activities.RecipeDetailActivity"
             android:parentActivityName="com.rowland.cheffaue.collectionfeature.view.activities.RecipeActivity">
 
