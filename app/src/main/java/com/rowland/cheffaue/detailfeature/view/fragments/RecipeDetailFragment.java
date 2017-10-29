@@ -22,7 +22,6 @@ import com.rowland.cheffaue.detailfeature.presenter.RecipeDetailPresenter;
 import com.rowland.cheffaue.detailfeature.view.activities.RecipeDetailActivity;
 import com.rowland.cheffaue.detailfeature.view.adapter.NestedViewPagerAdapter;
 import com.rowland.cheffaue.domain.model.RecipeDetailModel;
-import com.rowland.cheffaue.view.ABaseToolBarActivity;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -40,8 +39,6 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     @Inject
     RecipeDetailPresenter mRecipeDetailPresenter;
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
     @BindView(R.id.img_recipe_detail_backdrop)
     ImageView mDetailImageView;
     @BindView(R.id.tv_detail_recipename)
@@ -57,6 +54,8 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     ViewPager mDetailViewPager;
     @BindView(R.id.sl_sidingtabstrips)
     TabLayout mSlidingTabStrips;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     private NestedViewPagerAdapter detailViewPagerAdapter;
     private Unbinder unbinder;
@@ -112,6 +111,7 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
             ((RecipeDetailActivity) getActivity()).setToolbarTransparent(true);
         }
     }
+
     @Override
     public Context context() {
         return getActivity();
