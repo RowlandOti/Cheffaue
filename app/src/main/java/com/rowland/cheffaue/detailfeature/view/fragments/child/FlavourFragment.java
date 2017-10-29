@@ -83,7 +83,9 @@ public class FlavourFragment extends Fragment {
             BarSet barSet = new BarSet(mLabels, mValues);
             barSet.setColor(Color.parseColor("#FF4081"));
             mBarChartView.addData(barSet);
-            mBarChartView.setXLabels(XRenderer.LabelPosition.OUTSIDE)
+            mBarChartView.setAxisBorderValues(0,1);
+            mBarChartView
+                    .setXLabels(XRenderer.LabelPosition.OUTSIDE)
                     .setYLabels(YRenderer.LabelPosition.OUTSIDE)
                     .show(new Animation().inSequence(.5f, new int[]{1, 0, 5, 3, 4, 2}));
         }
