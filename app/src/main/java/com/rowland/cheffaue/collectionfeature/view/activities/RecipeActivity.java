@@ -12,12 +12,13 @@ import com.rowland.cheffaue.collectionfeature.view.fragments.RecipeCollectionFra
 import com.rowland.cheffaue.detailfeature.view.activities.RecipeDetailActivity;
 import com.rowland.cheffaue.detailfeature.view.fragments.RecipeDetailFragment;
 import com.rowland.cheffaue.domain.model.RecipeModel;
+import com.rowland.cheffaue.view.ABaseToolBarActivity;
 
 /**
  * Created by Rowland on 10/24/2017.
  */
 
-public class RecipeActivity extends AppCompatActivity implements IRecipeSelectedContract.onClickListener {
+public class RecipeActivity extends ABaseToolBarActivity implements IRecipeSelectedContract.onClickListener {
 
     public static boolean mTwoPane = false;
 
