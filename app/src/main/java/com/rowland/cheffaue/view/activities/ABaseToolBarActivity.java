@@ -15,7 +15,7 @@
  *
  */
 
-package com.rowland.cheffaue.view;
+package com.rowland.cheffaue.view.activities;
 
 import android.graphics.Color;
 import android.os.Build;

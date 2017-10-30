@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.rowland.cheffaue.R;
 import com.rowland.cheffaue.collectionfeature.view.fragments.RecipeCollectionFragment;
 import com.rowland.cheffaue.detailfeature.view.fragments.RecipeDetailFragment;
-import com.rowland.cheffaue.view.ABaseToolBarActivity;
+import com.rowland.cheffaue.view.activities.ABaseToolBarActivity;
 
 public class RecipeDetailActivity extends ABaseToolBarActivity {
 
