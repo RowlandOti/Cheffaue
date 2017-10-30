@@ -36,15 +36,16 @@ public class PhoneRecipeActivityTest {
     public ActivityTestRule<RecipeActivity> mActivityTestRule = new ActivityTestRule<>(RecipeActivity.class);
 
     @Test
-    public void recipeActivityTest() {
-        ViewInteraction recyclerView = onView(
-                allOf(withId(R.id.rc_collection),
+    public void recipeActivityTest() throws InterruptedException {
+
+        Thread.sleep(3000);
+        ViewInteraction recyclerView = onView(allOf(withId(R.id.rc_collection),
+                childAtPosition(
                         childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.fm_collection_section),
-                                        0),
+                                withId(R.id.fm_collection_section),
                                 0),
-                        isDisplayed()));
+                        0),
+                isDisplayed()));
         recyclerView.perform(actionOnItemAtPosition(6, click()));
 
         pressBack();
@@ -58,7 +59,7 @@ public class PhoneRecipeActivityTest {
                                 0),
                         isDisplayed()));
         recyclerView2.perform(actionOnItemAtPosition(0, click()));
-
+        Thread.sleep(1000);
         ViewInteraction textView = onView(
                 allOf(withId(R.id.tv_ingredient), withText("2 tablespoons butter"),
                         childAtPosition(
@@ -67,6 +68,7 @@ public class PhoneRecipeActivityTest {
                                         0),
                                 0),
                         isDisplayed()));
+        Thread.sleep(1000);
         textView.check(matches(withText("2 tablespoons butter")));
 
         ViewInteraction tabView = onView(
@@ -78,6 +80,7 @@ public class PhoneRecipeActivityTest {
                         isDisplayed()));
         tabView.perform(click());
 
+        Thread.sleep(1000);
         ViewInteraction textView2 = onView(
                 allOf(withId(R.id.tv_nutrient_attribute), withText("FAT_KCAL"),
                         childAtPosition(
