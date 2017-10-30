@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:padding="3dp"
+    card_view:cardCornerRadius="3dp"
+    card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,21 +27,22 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/img_recipe_image"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorAccent">
+            android:background="@color/colorAccentTransluscent">
 
             <TextView
-                android:maxLines="2"
                 android:id="@+id/tv_recipe_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:maxLines="2"
                 android:padding="5dp"
-                android:textSize="20sp"
+                android:textColor="#592932"
+                android:textSize="13sp"
                 tools:text="30-Minute-Cheese-Tortellini-Soup" />
 
         </RelativeLayout>
 
     </RelativeLayout>
 
-</LinearLayout>
+</android.support.v7.widget.CardView>
