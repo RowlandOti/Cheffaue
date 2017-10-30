@@ -1,7 +1,6 @@
 package com.rowland.cheffaue.collectionfeature.view.activities;
 
 
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -39,57 +38,28 @@ public class PhoneRecipeActivityTest {
     public void recipeActivityTest() throws InterruptedException {
 
         Thread.sleep(3000);
-        ViewInteraction recyclerView = onView(allOf(withId(R.id.rc_collection),
-                childAtPosition(
-                        childAtPosition(
-                                withId(R.id.fm_collection_section),
-                                0),
-                        0),
-                isDisplayed()));
-        recyclerView.perform(actionOnItemAtPosition(6, click()));
+        onView(allOf(withId(R.id.rc_collection),
+                childAtPosition(childAtPosition(withId(R.id.fm_collection_section),
+                                0), 0), isDisplayed())).perform(actionOnItemAtPosition(6, click()));
 
         pressBack();
 
-        ViewInteraction recyclerView2 = onView(
-                allOf(withId(R.id.rc_collection),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.fm_collection_section),
-                                        0),
-                                0),
-                        isDisplayed()));
-        recyclerView2.perform(actionOnItemAtPosition(0, click()));
-        Thread.sleep(1000);
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.tv_ingredient), withText("2 tablespoons butter"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.rc_ingredient_collection),
-                                        0),
-                                0),
-                        isDisplayed()));
-        Thread.sleep(1000);
-        textView.check(matches(withText("2 tablespoons butter")));
-
-        ViewInteraction tabView = onView(
-                allOf(childAtPosition(
-                        childAtPosition(
-                                withId(R.id.sl_slidingtabstrips),
-                                0),
-                        2),
-                        isDisplayed()));
-        tabView.perform(click());
+       onView(allOf(withId(R.id.rc_collection),
+                        childAtPosition(childAtPosition(withId(R.id.fm_collection_section),
+                                        0), 0), isDisplayed())).perform(actionOnItemAtPosition(0, click()));
 
         Thread.sleep(1000);
-        ViewInteraction textView2 = onView(
-                allOf(withId(R.id.tv_nutrient_attribute), withText("FAT_KCAL"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.rc_nutrition_collection),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView2.check(matches(withText("FAT_KCAL")));
+        onView(allOf(withId(R.id.tv_ingredient), withText("2 tablespoons butter"),
+                        childAtPosition(childAtPosition(withId(R.id.rc_ingredient_collection),
+                                0), 0), isDisplayed())).check(matches(withText("2 tablespoons butter")));
+
+       onView(allOf(childAtPosition(childAtPosition(withId(R.id.sl_slidingtabstrips),
+                                0), 2), isDisplayed())).perform(click());
+
+        Thread.sleep(1000);
+        onView(allOf(withId(R.id.tv_nutrient_attribute), withText("FAT_KCAL"),
+                        childAtPosition(childAtPosition(withId(R.id.rc_nutrition_collection),
+                                0), 0), isDisplayed())).check(matches(withText("FAT_KCAL")));
 
     }
 
