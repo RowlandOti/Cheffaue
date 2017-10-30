@@ -11,68 +11,69 @@ public class Flavour implements Parcelable{
 
     @SerializedName("Piquant")
     @Expose
-    private Double piquant;
+    private Float piquant;
     @SerializedName("Meaty")
     @Expose
-    private Double meaty;
+    private Float meaty;
     @SerializedName("Bitter")
     @Expose
-    private Double bitter;
+    private Float bitter;
     @SerializedName("Sweet")
     @Expose
-    private Double sweet;
+    private Float sweet;
     @SerializedName("Sour")
     @Expose
-    private Double sour;
+    private Float sour;
     @SerializedName("Salty")
     @Expose
-    private Double salty;
+    private Float salty;
 
-    public Double getPiquant() {
-        return piquant;
+    public Float getPiquant() {
+
+        return piquant != null ? piquant: 0;
     }
 
-    public void setPiquant(Double piquant) {
+    public void setPiquant(Float piquant) {
         this.piquant = piquant;
     }
 
-    public Double getMeaty() {
-        return meaty;
+    public Float getMeaty() {
+        return meaty != null ? meaty : 0;
     }
 
-    public void setMeaty(Double meaty) {
+    public void setMeaty(Float meaty) {
         this.meaty = meaty;
     }
 
-    public Double getBitter() {
-        return bitter;
+    public Float getBitter() {
+        return bitter != null ? bitter : 0;
     }
 
-    public void setBitter(Double bitter) {
+    public void setBitter(Float bitter) {
         this.bitter = bitter;
     }
 
-    public Double getSweet() {
-        return sweet;
+    public Float getSweet() {
+        return sweet != null ? sweet : 0;
     }
 
-    public void setSweet(Double sweet) {
+    public void setSweet(Float sweet) {
         this.sweet = sweet;
     }
 
-    public Double getSour() {
-        return sour;
+    public Float getSour() {
+        return sour != null ? sour : 0;
     }
 
-    public void setSour(Double sour) {
+    public void setSour(Float sour) {
         this.sour = sour;
     }
 
-    public Double getSalty() {
-        return salty;
+    public Float getSalty() {
+        return salty != null ? salty : 0;
     }
 
-    public void setSalty(Double salty) {
+    public void setSalty(Float salty) {
         this.salty = salty;
     }
 
@@ -99,12 +100,12 @@ public class Flavour implements Parcelable{
     };
 
     protected Flavour(Parcel in) {
-        this.piquant = ((Double) in.readValue((Double.class.getClassLoader())));
-        this.meaty = ((Double) in.readValue((Double.class.getClassLoader())));
-        this.bitter = ((Double) in.readValue((Double.class.getClassLoader())));
-        this.sweet = ((Double) in.readValue((Double.class.getClassLoader())));
-        this.sour = ((Double) in.readValue((Double.class.getClassLoader())));
-        this.salty = ((Double) in.readValue((Double.class.getClassLoader())));
+        this.piquant = ((Float) in.readValue((Float.class.getClassLoader())));
+        this.meaty = ((Float) in.readValue((Float.class.getClassLoader())));
+        this.bitter = ((Float) in.readValue((Float.class.getClassLoader())));
+        this.sweet = ((Float) in.readValue((Float.class.getClassLoader())));
+        this.sour = ((Float) in.readValue((Float.class.getClassLoader())));
+        this.salty = ((Float) in.readValue((Float.class.getClassLoader())));
     }
 
     public void writeToParcel(Parcel dest, int flags) {

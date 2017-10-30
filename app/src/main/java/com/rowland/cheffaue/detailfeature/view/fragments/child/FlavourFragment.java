@@ -70,24 +70,26 @@ public class FlavourFragment extends Fragment {
             Bundle args = getArguments();
             Flavour flavour = args.getParcelable(FLAVOUR_ITEM);
 
-            String[] mLabels = {"Piquant", "Meaty", "Bitter", "Sweet", "Sour", "Salty"};
-            float piqValue = Float.parseFloat(String.valueOf(flavour.getPiquant()));
-            float meatValue = Float.parseFloat(String.valueOf(flavour.getMeaty()));
-            float bitValue = Float.parseFloat(String.valueOf(flavour.getBitter()));
-            float sweValue = Float.parseFloat(String.valueOf(flavour.getSweet()));
-            float souValue = Float.parseFloat(String.valueOf(flavour.getSour()));
-            float salValue = Float.parseFloat(String.valueOf(flavour.getSalty()));
-            float[] mValues = {piqValue, meatValue, bitValue, sweValue, souValue, salValue};
+            if (flavour != null) {
+                String[] mLabels = {"Piquant", "Meaty", "Bitter", "Sweet", "Sour", "Salty"};
+                float piqValue = flavour.getPiquant();
+                float meatValue = flavour.getMeaty();
+                float bitValue = flavour.getBitter();
+                float sweValue = flavour.getSweet();
+                float souValue = flavour.getSour();
+                float salValue = flavour.getSalty();
+                float[] mValues = {piqValue, meatValue, bitValue, sweValue, souValue, salValue};
 
-            // Data
-            BarSet barSet = new BarSet(mLabels, mValues);
-            barSet.setColor(Color.parseColor("#FF4081"));
-            mBarChartView.addData(barSet);
-            mBarChartView.setAxisBorderValues(0,1);
-            mBarChartView
-                    .setXLabels(XRenderer.LabelPosition.OUTSIDE)
-                    .setYLabels(YRenderer.LabelPosition.OUTSIDE)
-                    .show(new Animation().inSequence(.5f, new int[]{1, 0, 5, 3, 4, 2}));
+                // Data
+                BarSet barSet = new BarSet(mLabels, mValues);
+                barSet.setColor(Color.parseColor("#FF4081"));
+                mBarChartView.addData(barSet);
+                mBarChartView.setAxisBorderValues(0, 1);
+                mBarChartView
+                        .setXLabels(XRenderer.LabelPosition.OUTSIDE)
+                        .setYLabels(YRenderer.LabelPosition.OUTSIDE)
+                        .show(new Animation().inSequence(.5f, new int[]{1, 0, 5, 3, 4, 2}));
+            }
         }
     }
 
