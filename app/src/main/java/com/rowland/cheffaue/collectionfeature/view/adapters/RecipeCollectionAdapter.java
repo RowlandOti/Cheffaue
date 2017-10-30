@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,47 +106,11 @@ public class RecipeCollectionAdapter extends RecyclerView.Adapter<RecipeCollecti
             recipeNameTextView.setText(recipeModel.getRecipeName());
 
             String imageUrl = recipeModel.getSmallImageUrls().get(0);
-            Target target = new Target() {
-
-                @Override
-                public void onPrepareLoad(Drawable arg0) {
-                    // Show some progress
-                }
-
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom arg1) {
-                    // Set background
-                    recipeImageView.setImageBitmap(bitmap);
-                    final Palette.PaletteAsyncListener paletteListener = new Palette.PaletteAsyncListener() {
-                        public void onGenerated(Palette palette) {
-                            // access palette colors here
-                            int defaultColor = 0xc5000000;
-                            int mutedLightColor = palette.getDarkMutedColor(defaultColor);
-                            recipeRecipeNameContainer.setBackgroundColor(mutedLightColor);
-                            // Get the "vibrant" color swatch based on the bitmap
-                            Palette.Swatch vibrantSwatch = palette.getDarkMutedSwatch();
-                            if (vibrantSwatch != null) {
-                                int textColor = vibrantSwatch.getBodyTextColor();
-                                recipeNameTextView.setTextColor(textColor);
-                            }
-                            // Hide some progress
-                        }
-                    };
-
-                    if (bitmap != null && !bitmap.isRecycled()) {
-                        Palette.from(bitmap).generate(paletteListener);
-                    }
-                }
-
-                @Override
-                public void onBitmapFailed(Drawable arg0) {
-                    // Something went wrong
-                }
-            };
+            imageUrl = imageUrl.replaceAll("s90", "s400");
 
             Picasso.with(recipeImageView.getContext())
                     .load(imageUrl)
-                    .into(target);
+                    .into(recipeImageView);
         }
     }
 }
