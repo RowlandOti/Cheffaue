@@ -16,7 +16,8 @@ Some of the Android skills used in the project include:
 - Tablet support
 
 # Requirements
-The app needs an **API KEY** and **APP ID** from [The Yummly API](https://developer.yummly.com/#the-api)
+- The app needs an **API KEY** and **APP ID** from [The Yummly API](https://developer.yummly.com/#the-api)
+- Please use Android Studio => 3.0
 
 Preview: 
 
