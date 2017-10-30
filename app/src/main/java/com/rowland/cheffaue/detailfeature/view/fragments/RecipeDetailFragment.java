@@ -3,6 +3,7 @@ package com.rowland.cheffaue.detailfeature.view.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -50,9 +51,11 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     @BindView(R.id.tv_detail_rating)
     TextView ratingsTextView;
 
+    @BindView(R.id.recipe_detail_appbar)
+    AppBarLayout mDetailAppbarLayout;
     @BindView(R.id.vp_detail_pager)
     ViewPager mDetailViewPager;
-    @BindView(R.id.sl_sidingtabstrips)
+    @BindView(R.id.sl_slidingtabstrips)
     TabLayout mSlidingTabStrips;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -96,6 +99,7 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
         super.onViewCreated(view, savedInstanceState);
 
         mSlidingTabStrips.setupWithViewPager(mDetailViewPager);
+
         if (recipeId != null) {
             this.loadRecipeDetail(recipeId);
         }
@@ -148,17 +152,25 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     }
 
     @Override
-    public void renderRecipeDetail(RecipeDetailModel recipeDetailModel) {
+    public void renderRecipeDetail(final RecipeDetailModel recipeDetailModel) {
         String hostedImageUrl = recipeDetailModel.getImages().get(0).getHostedLargeUrl();
+        hostedImageUrl = hostedImageUrl.replaceAll("s90", "s500");
         Picasso.with(getActivity()).load(hostedImageUrl).into(mDetailImageView);
 
-        recipeNameTextView.setText(recipeDetailModel.getName());
+        recipeNameTextView.setText(" ");
         ratingsTextView.setText(String.format("Rating: %d/10", Math.round(recipeDetailModel.getRating())));
         servingsTextView.setText(String.format("Servings: %d", Math.round(recipeDetailModel.getNumberOfServings())));
         prepTimeTextView.setText(String.format("Prep Time: %s", recipeDetailModel.getTotalTime()));
 
         detailViewPagerAdapter = new NestedViewPagerAdapter(getChildFragmentManager(), recipeDetailModel);
         mDetailViewPager.setAdapter(detailViewPagerAdapter);
+
+        if (getActivity() instanceof RecipeDetailActivity) {
+            mToolbar.setTitle(recipeDetailModel.getName());
+        }
+        else {
+            getActivity().setTitle(recipeDetailModel.getName());
+        }
     }
 
     @Override
