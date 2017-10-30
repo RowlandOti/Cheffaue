@@ -22,9 +22,9 @@ public class RecipeDetailActivity extends ABaseToolBarActivity {
         Bundle args = new Bundle();
         args.putString(RecipeCollectionFragment.SELECTED_RECIPE_KEY, intent.getStringExtra(RecipeCollectionFragment.SELECTED_RECIPE_KEY));
 
-        if(savedInstanceState == null) {
+        //if(savedInstanceState == null) {
             showRecipeDetailFragment(args);
-        }
+        //}
     }
 
     private void showRecipeDetailFragment(Bundle args) {
