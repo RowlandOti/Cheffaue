@@ -25,20 +25,21 @@
             app:layout_collapseMode="parallax"
             tools:src="@drawable/recipeTortellini" />
 
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="top"
-            app:layout_collapseMode="pin" />
+            app:layout_collapseMode="pin"
+            />
 
         <LinearLayout
+            app:layout_collapseMode="parallax"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:orientation="vertical"
-            android:background="#0D000000">
+            android:background="#0D000000"
+            android:orientation="vertical">
 
             <include
                 layout="@layout/inc_collapsed_text"
@@ -48,25 +49,24 @@
                 android:layout_marginBottom="1dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="10dp"
-                android:background="#4D000000"
+                android:background="@color/collapsing_text"
                 app:layout_collapseMode="parallax" />
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/sl_sidingtabstrips"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="bottom"
-                android:background="@color/colorAccent"
-                app:layout_collapseMode="pin"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@color/colorPrimary"
-                app:tabIndicatorHeight="4dp"
-                app:tabMode="fixed" />
 
         </LinearLayout>
 
     </android.support.design.widget.CollapsingToolbarLayout>
 
+    <android.support.design.widget.TabLayout
+        android:id="@+id/sl_slidingtabstrips"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="@color/colorAccentTransluscent"
+        app:layout_collapseMode="pin"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorHeight="4dp"
+        app:tabMode="fixed" />
 </android.support.design.widget.AppBarLayout>
 
 
