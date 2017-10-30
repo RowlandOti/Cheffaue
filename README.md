@@ -8,7 +8,7 @@ Some of the Android skills used in the project include:
 - Android-MVP
 - Dagger
 - RXAndroid/RxJava
-- Home screen Widget
+- Home screen Widget (ToDo)
 - Organisation of codebase by feature
 - API integration
 - JSON Parsing
@@ -20,9 +20,10 @@ The app needs an **API KEY** and **APP ID** from [The Yummly API](https://develo
 
 Preview: 
 
+![Alt text](https://github.com/RowlandOti/Cheffaue/blob/master/documentation/art/illustration_tablet.png?raw=true "Cheffaue Preview")
+
+
 ![Alt text](https://github.com/RowlandOti/Cheffaue/blob/master/documentation/art/illustration.png?raw=true "Cheffaue Preview")
 
 
-
-![Alt text](https://github.com/RowlandOti/Cheffaue/blob/master/documentation/art/illustration.png?raw=true "Cheffaue Preview")
-
+![Alt text](https://github.com/RowlandOti/Cheffaue/blob/master/documentation/art/illustration_detail_ingredients.png?raw=true "Cheffaue Preview")
