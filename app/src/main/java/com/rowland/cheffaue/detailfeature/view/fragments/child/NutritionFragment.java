@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rowland.cheffaue.R;
@@ -32,6 +33,9 @@ public class NutritionFragment extends Fragment {
 
     @BindView(R.id.rc_nutrition_collection)
     RecyclerView mCollectionRecyclerView;
+
+    @BindView(R.id.rl_view)
+    RelativeLayout mEmptyView;
 
     private NutritionCollectionAdapter mNutritionCollectionAdapter;
 
@@ -72,8 +76,20 @@ public class NutritionFragment extends Fragment {
 
         if (getArguments() != null) {
             Bundle args = getArguments();
-            List<NutritionEstimate> NutritionList = args.getParcelableArrayList(NUTRITION_COLLECTION);
-            mNutritionCollectionAdapter.addAll(NutritionList);
+            List<NutritionEstimate> nutritionList = args.getParcelableArrayList(NUTRITION_COLLECTION);
+
+            if (nutritionList != null && nutritionList.size() != 0) {
+                mNutritionCollectionAdapter.addAll(nutritionList);
+                showEmpty();
+            }
+        }
+    }
+
+    private void showEmpty() {
+        if (mNutritionCollectionAdapter.getItemCount() == 0) {
+            mEmptyView.setVisibility(View.VISIBLE);
+        } else {
+            mEmptyView.setVisibility(View.GONE);
         }
     }
 
@@ -144,7 +160,7 @@ public class NutritionFragment extends Fragment {
             public void bindTo(final NutritionEstimate model) {
                 nutritionAttributeTextView.setText(model.getAttribute());
                 // Quick patch for missing description for FAT_KCAL
-                nutritionDescriptionTextView.setText(model.getAttribute().equals("FAT_KCAL") ? "Fatty Calories" :  model.getDescription());
+                nutritionDescriptionTextView.setText(model.getAttribute().equals("FAT_KCAL") ? "Fatty Calories" : model.getDescription());
                 nutritionValueTextView.setText(String.format("%f %s", model.getValue(), model.getUnit().getPlural()));
             }
         }
