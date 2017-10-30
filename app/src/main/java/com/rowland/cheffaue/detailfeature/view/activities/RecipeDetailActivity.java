@@ -22,7 +22,9 @@ public class RecipeDetailActivity extends ABaseToolBarActivity {
         Bundle args = new Bundle();
         args.putString(RecipeCollectionFragment.SELECTED_RECIPE_KEY, intent.getStringExtra(RecipeCollectionFragment.SELECTED_RECIPE_KEY));
 
-        showRecipeDetailFragment(args);
+        if(savedInstanceState == null) {
+            showRecipeDetailFragment(args);
+        }
     }
 
     private void showRecipeDetailFragment(Bundle args) {
@@ -32,5 +34,4 @@ public class RecipeDetailActivity extends ABaseToolBarActivity {
         ft.replace(R.id.fm_detail_section, detailFragment);
         ft.commit();
     }
-
 }
