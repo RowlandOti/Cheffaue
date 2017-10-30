@@ -63,6 +63,7 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
     private NestedViewPagerAdapter detailViewPagerAdapter;
     private Unbinder unbinder;
     private String recipeId;
+    private int selectedTabStripId = 0;
 
     public RecipeDetailFragment() {
         // Required empty public constructor
@@ -100,6 +101,11 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
 
         mSlidingTabStrips.setupWithViewPager(mDetailViewPager);
 
+        if (savedInstanceState != null) {
+            recipeId = savedInstanceState.getString(RecipeCollectionFragment.SELECTED_RECIPE_KEY);
+            mDetailViewPager.setCurrentItem(selectedTabStripId, true);
+        }
+
         if (recipeId != null) {
             this.loadRecipeDetail(recipeId);
         }
@@ -114,6 +120,13 @@ public class RecipeDetailFragment extends Fragment implements IRecipeDetailContr
             ((RecipeDetailActivity) getActivity()).setToolbar(mToolbar, true, false, 0);
             ((RecipeDetailActivity) getActivity()).setToolbarTransparent(true);
         }
+    }
+
+    // Save data for this fragment
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(RecipeCollectionFragment.SELECTED_RECIPE_KEY, recipeId);
     }
 
     @Override
