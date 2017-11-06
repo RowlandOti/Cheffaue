@@ -116,7 +116,6 @@ public class RecipeCollectionFragment extends Fragment implements IRecipeCollect
     @Override
     public void renderRecipeCollection(Collection<RecipeModel> collection) {
         mRecipeCollectionAdapter.addAll(collection);
-        Toast.makeText(getActivity(), String.valueOf(mRecipeCollectionAdapter.getItemCount()), Toast.LENGTH_LONG).show();
     }
 
     @Override
